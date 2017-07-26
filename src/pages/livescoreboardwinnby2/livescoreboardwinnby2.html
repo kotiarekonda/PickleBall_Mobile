@@ -1,0 +1,1240 @@
+<!--
+  Generated template for the Livescoreboardwinnby2 page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  	<ion-row class="headerheight">
+	    <ion-col class="headicon" >
+	    		<ion-icon (click)="backtohome()" name="arrow-back" class="backbtnicon"  ></ion-icon>
+	    </ion-col>
+		<ion-col width-70 center class="row" justify-content-between>
+				<h4 class="nameoftourn">USAPA West Regionals</h4>
+				<div class="row time">
+					<span *ngIf="Firstserve.GameStartHovers <= 9 ">0{{Firstserve.GameStartHovers}} : </span>
+					<span *ngIf="Firstserve.GameStartHovers > 9 ">{{Firstserve.GameStartHovers}} : </span>
+					<span *ngIf="Firstserve.GameStartMints <= 9 ">0{{Firstserve.GameStartMints}} : </span>
+					<span *ngIf="Firstserve.GameStartMints > 9 ">{{Firstserve.GameStartMints}} : </span>
+					<span *ngIf="Firstserve.GameStartSecondes <= 9 ">0{{Firstserve.GameStartSecondes}}</span>
+					<span *ngIf="Firstserve.GameStartSecondes > 9 ">{{Firstserve.GameStartSecondes}}</span>
+				</div>
+		</ion-col>
+		<img *ngIf="navParams.data.Logout===undefined" (click)="logout();" text-left src="assets/icon/logout.svg">
+		<ion-col width-20>
+				
+				<div  class="gameicondiv"><img  src="assets/icon/newicon.png" class="gameicon" ></div>
+		</ion-col>
+  	</ion-row>
+</ion-header>
+<ion-content class="maincontent" >
+  <ion-row>
+	<ion-col  width-75 class="userdtls">
+		<div class="userdtlssubdiv">
+	      <div class="row" >
+			 <p class="eventptag">
+				 <span class="playerdetailstext">EVENT</span> 
+				 <span  class="eventcolon">:</span>
+				 <span class="detailsspan">{{navParams.data.EventName}}</span> 
+			 </p>
+			 <p class="courttag" >
+				 <span class="playerdetailstext">COURT</span>
+				 <span class="courtcolon">:</span> 
+				 <span class="courtnumber">{{navParams.data.courtNumber}}</span>
+			 </p>
+			 <button class="btnbfratve stylesbtn start" *ngIf="Firstserve.GameStart !=undefined && Firstserve.GameStart" align-items-end >
+			 		<p class="startp">START MATCH</p>
+			 </button>
+		  </div>	 
+			  <p class="whitecolor" >
+				  <span class="playerdetailstext">FORMAT</span> 
+				  <span class="formatcolon1">:</span>
+				  <span class="detailsspan">{{navParams.data.GameFormat}}</span>
+			  </p>
+		      <p class="whitecolor" >
+			      <span class="playerdetailstext">REFEREE</span> 
+			      <span >:</span>
+			      <span class="detailsspan">{{navParams.data.Referee}}</span>
+		      </p>
+			  <div class="whitecolor row" >
+				 <span class="playerdetailstext">TEAMS</span>
+				 <span  class="playercolon">:</span>
+				 <!--<div *ngIf="navParams.data.GameStatus===false" style="font-size: 12px;">
+					<div *ngIf="navParams.data.Team1.Players.length == 2" class="uppercasee">
+						<span class="effect colorcls" *ngIf="navParams.data.Team1.Players[0].Served === true"  (click)="TeamASelectFirstServePlayerName(0)"> {{navParams.data.Team1.Players[0]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="navParams.data.Team1.Players[0].Served === false" (click)="TeamASelectFirstServePlayerName(0)"> {{navParams.data.Team1.Players[0]["Name"]}}
+						</span>/
+						<span class="effect colorcls" *ngIf="navParams.data.Team1.Players[1].Served === true"  (click)="TeamASelectFirstServePlayerName(1)"> {{navParams.data.Team1.Players[1]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="navParams.data.Team1.Players[1].Served === false" (click)="TeamASelectFirstServePlayerName(1)"> {{navParams.data.Team1.Players[1]["Name"]}}
+						</span>
+						<span class="ves">VS</span>
+						<span class="effect colorcls" *ngIf="navParams.data.Team2.Players[0].Served === true"  (click)="TeamBSelectFirstServePlayerName(0)" > {{navParams.data.Team2.Players[0]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="navParams.data.Team2.Players[0].Served === false"  (click)="TeamBSelectFirstServePlayerName(0)"> {{navParams.data.Team2.Players[0]["Name"]}}
+						</span>/
+						<span class="effect colorcls" *ngIf="navParams.data.Team2.Players[1].Served === true"  (click)="TeamBSelectFirstServePlayerName(1)"> {{navParams.data.Team2.Players[1]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="navParams.data.Team2.Players[1].Served === false"  (click)="TeamBSelectFirstServePlayerName(1)"> {{navParams.data.Team2.Players[1]["Name"]}}
+						</span>
+					</div>
+					<div *ngIf="navParams.data.Team1.Players.length == 1" class="uppercasee">
+						<span class="effect" *ngIf="navParams.data.Team1.Players[0].Served ===false">{{navParams.data.Team1.Players[0]["Name"]}}</span>
+						<span class="effect colorcls" *ngIf="navParams.data.Team1.Players[0].Served">{{navParams.data.Team1.Players[0]["Name"]}}</span>
+						<span class="ves">VS</span>
+						<span class="effect" *ngIf="navParams.data.Team2.Players[0].Served === false">{{navParams.data.Team2.Players[0]["Name"]}}</span>
+						<span class="effect colorcls" *ngIf="navParams.data.Team2.Players[0].Served">{{navParams.data.Team2.Players[0]["Name"]}}</span>
+					</div>	
+				</div>-->
+			    <div *ngIf="navParams.data.GameStatus !==0">
+					<div *ngIf="navParams.data.Team1.Players.length == 2" class="uppercasee">
+						<div class="row">
+							<div class="column">
+								<p class="colorcls margin0cls" >{{Firstserve.nameA1}}</p> 
+								<img *ngIf="time || Firstserve.Matchcomplete != undefined"  style="padding-left:30px;" src="assets/icon/player.png">
+								<img *ngIf="time===false && Firstserve.Matchcomplete === undefined" style="padding-left:30px;" src="assets/icon/player.png">
+							</div>
+							<span>/</span>
+							<div class="column">
+								<p class="margin0cls" >{{Firstserve.nameA2}}</p>
+							 </div>
+							<span class="ves">VS</span>
+									<div class="column">
+								<p class="colorcls margin0cls" >{{Firstserve.nameB1}}</p>
+								<img *ngIf="time || Firstserve.Matchcomplete != undefined"  style="padding-left:30px;" src="assets/icon/player.png">
+								<img *ngIf="time===false && Firstserve.Matchcomplete === undefined" style="padding-left:30px;" src="assets/icon/player.png">
+							</div>
+							<span>/</span>
+							<div class="column">
+								<p class="margin0cls" >{{Firstserve.nameB2}}</p>
+							 </div>
+						</div>
+					</div>
+					<div *ngIf="navParams.data.Team1.Players.length == 1" class="uppercasee">
+						<div class="row">
+							<div class="column">
+								<p class="colorcls margin0cls" >{{Firstserve.nameA1}}</p>
+								<img *ngIf="time || Firstserve.Matchcomplete != undefined" style="padding-left:30px;" src="assets/icon/player.png">
+								<img *ngIf="time===false && Firstserve.Matchcomplete === undefined" style="padding-left:30px;" src="assets/icon/player.png">
+								
+							</div>
+							<span class="ves">VS</span>
+							<div class="column">
+								<p class="margin0cls" >{{Firstserve.nameB1}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			 </div>
+		</div>
+    </ion-col>
+	<ion-col width-15>
+<div class="col right">
+<div class="row right">
+<div style="padding:0px 0px;" *ngIf="navParams.data.GameStatus===0 || time || Firstserve.Matchcomplete != undefined ">
+<ion-icon justify-content-center class="timericn" name="stopwatch"></ion-icon>
+</div>
+<div style="padding:5px 0;" *ngIf="navParams.data.GameStatus===0 && time === false && Firstserve.Matchcomplete === undefined ">
+<ion-icon justify-content-center class="timericn2" name="stopwatch"></ion-icon>
+</div>
+<ion-list style="margin-bottom: 0px !important;">
+	<ion-item class="timeritm">
+		<ion-label class="whitecolor"> TIMER &nbsp;:<span *ngIf="navParams.data.GameStatus===0 && time">1Min</span></ion-label>
+		</ion-item>
+</ion-list>
+</div>
+<div class="row timeoutsdiv">
+<button *ngIf="time" class="stoptime">
+  <p class="timemntss"><span >{{timeMints}}</span>:<span >{{timeSecondes}}</span></p>
+</button>  
+<button *ngIf="time" class="button button-positive stoptime">
+   <p class="timeof">OFF</p>
+</button>
+</div>
+</div>	
+	</ion-col>
+</ion-row>
+<div class="row" style="height: 70px;">
+	<div class="sideoutscore" >
+	<button class="btnbfratve stylesbtn btnmarg sideclsbdr" *ngIf="Firstserve.SideOutButtonActive && time=== false" align-items-end ><p class="sideoutp">SIDE OUT</p></button>
+	<button class="btnbfratve btnmarg sideoutppt" *ngIf="Firstserve.SideOutButtonActive === false || time"  align-items-end ><p class="sideoutp">SIDE OUT</p></button>
+	<button class="btnbfratve stylesbtn  sideclsbdr" *ngIf="navParams.data.Event === 'Doubles' && Firstserve.SideOutButtonActive === false && Firstserve.Matchcomplete === undefined && time === false && Firstserve.Team1Active" align-items-end ><p class="sideoutp">CHANGE SERVE</p></button>
+	<button class="btnbfratve stylesbtn  sideclsbdr" *ngIf="navParams.data.Event === 'Doubles' && Firstserve.SideOutButtonActive === false && Firstserve.Matchcomplete === undefined && time === false && Firstserve.Team2Active" align-items-end ><p class="sideoutp">CHANGE SERVE</p></button>
+	<button class="btnbfratve  sideoutppt" *ngIf="navParams.data.Event === 'Doubles' && navParams.data.GameStatus===0 && Firstserve.SideOutButtonActive && time===false && Firstserve.Matchcomplete === undefined && Firstserve.serveChangeUndo" align-items-end ><p class="sideoutp">CHANGE SERVE</p></button>
+	<button class="btnbfratve  sideoutppt" *ngIf="navParams.data.Event === 'Doubles' && navParams.data.GameStatus===0 && Firstserve.SideOutButtonActive && time===false && Firstserve.serveChangeUndo===false" align-items-end ><p class="sideoutp">CHANGE SERVE</p></button>
+	<button class="btnbfratve  sideoutppt" *ngIf="navParams.data.Event === 'Doubles' && navParams.data.GameStatus===0 && Firstserve.SideOutButtonActive && time"  align-items-end ><p class="sideoutp">CHANGE SERVE</p></button>
+	
+
+	</div>
+<div  justify-content-end class="column scoredv">
+	<h4 justify-content-end class="scoreh4">Score</h4>
+	<div class="row " >
+	     <p class="seveion"><img src="assets/icon/serve icon.png"></p>
+		   <div *ngIf="navParams.data.GameStatus===0" class="row" style="margin-bottom: 10px;height: 40px;" >
+<button   class="button button-positive col emptybtnfst">
+				   <p class="margin6"></p>
+				</button>
+			    <button  class="button button-positive col btnbfratve emptybtn">
+				   <p class="margin6"></p>
+			   </button>
+			    <button  class="button button-positive col btnbfratve emptybtn">
+				   <p class="margin6"></p>
+			   </button>
+			</div>
+ <div *ngIf="navParams.data.GameStatus !==0 && Firstserve.Team1!= undefined" class="row btnbfratve btnservmaindiv"  >
+                    <button *ngIf="Firstserve.Team1Active"  class="button button-positive col teamactvestl">
+					   <p class="margin6blkclr">{{Firstserve.Team1.TeamAPoints}}</p>
+					</button>
+					<button  *ngIf="Firstserve.Team2Active"  class="button button-positive col teamactvestl">
+					   <p class="margin6blkclr">{{Firstserve.Team2.TeamBPoints}}</p>
+					</button>
+				    <button *ngIf="Firstserve.Team1Active === false"  class="button button-positive col btnbfratve btnwdtht38">
+					   <p class="margin6wtclr">{{Firstserve.Team1.TeamAPoints}}</p>
+				   </button>
+				   <button *ngIf="Firstserve.Team2Active === false"  class="button button-positive col btnbfratve btnwdtht38">
+					   <p class="margin6wtclr">{{Firstserve.Team2.TeamBPoints}}</p>
+				   </button>
+				   <button *ngIf="Firstserve.Team1Active && navParams.data.Event === 'Doubles'" 
+					 class="button button-positive col btnbfratve btnwdtht38">
+					   <p class="margin6wtclr">{{Firstserve.Team1.TeamAServeCount}}</p>
+				   </button>
+                   <button *ngIf="Firstserve.Team2Active && navParams.data.Event === 'Doubles'" 
+					 class="button button-positive col btnbfratve btnwdtht38">
+					   <p class="margin6wtclr">{{Firstserve.Team2.TeamBServeCount}}</p>
+				   </button>
+			</div>
+	</div>
+</div>
+</div>
+<div class="row"  style=";margin:0px; justify-content: space-between;width: 100%;" >
+	<div style="width:15%;" *ngIf="navParams.data.GameStatus===0" >
+		 <p  style="color: #fff;padding-left: 30%;margin-bottom:0px;margin-top: 65px;">SERVE</p>
+	</div>
+	<div style="width:15%;" *ngIf="navParams.data.GameStatus!==0" >
+		 <p  style="color: #fff;padding-left:30%;margin-bottom:20px;">SERVE</p>
+	</div>
+<div class="column" [ngClass]="{'teamslf': Add11formate, 'teamslff': !Add11formate}">
+	<div style="text-align: center;padding-right:7%;" *ngIf="navParams.data.GameStatus!==0">
+       <img  src="assets/icon/RLarrows.png">
+    </div>
+	<div>
+        <ion-row class="row" *ngIf="navParams.data.GameStatus===0">
+		 <ion-col style="max-width:45%">
+			 	<div *ngIf="Firstserve.Team1Side==='Left'">  
+			 	<span *ngIf="Firstserve.Team1Active" class="whitecolor teambet">Serving Team:</span>
+                <span *ngIf="Firstserve.Team1Active === false" class="whitecolor teambet">Receiving Team:</span>
+				</div>
+				<div *ngIf="Firstserve.Team2Side==='Left'">  
+			 	<span *ngIf="Firstserve.Team2Active" class="whitecolor teamserbet" >Serving Team:</span>
+				<span *ngIf="Firstserve.Team2Active===false" class="whitecolor teamserbet" >Receiving Team:</span>
+				</div>
+         </ion-col> 
+         <ion-col style="max-width: 10%;padding-left: 7px;"> 
+                <span class="whitecolor">|</span>
+         </ion-col>
+        <ion-col > 
+			<div *ngIf="Firstserve.Team1Side==='Right'">  
+			 	<span *ngIf="Firstserve.Team1Active" class="whitecolor teambet">Serving Team:</span>
+                <span *ngIf="Firstserve.Team1Active === false" class="whitecolor teambet">Receiving Team:</span>
+				</div>
+				<div *ngIf="Firstserve.Team2Side==='Right'">  
+			 	<span *ngIf="Firstserve.Team2Active" class="whitecolor teamserbet" >Serving Team:</span>
+				<span *ngIf="Firstserve.Team2Active===false" class="whitecolor teamserbet" >Receiving Team:</span>
+				</div>
+         </ion-col> 
+		</ion-row>
+	<ion-row  *ngIf="navParams.data.GameStatus===0">
+      <ion-col justify-content-around>
+		 <p class="whitecolor">
+		 <span>
+		 <span >TEAM :</span>
+          <span *ngIf="navParams.data.Team1.Players.length == 2 && TeamAScore.Team==='Team1'" class="uppercasee">
+					<span >{{navParams.data.Team1.Players[0]["Name"]}}/
+					{{navParams.data.Team1.Players[1]["Name"]}}
+					</span>
+				</span>
+				<span *ngIf="navParams.data.Team1.Players.length == 2 && TeamAScore.Team==='Team2'" class="uppercasee">
+					<span >{{navParams.data.Team2.Players[0]["Name"]}}/
+					{{navParams.data.Team2.Players[1]["Name"]}}
+					</span>
+				</span>
+				<span *ngIf="navParams.data.Team1.Players.length == 1 && TeamAScore.Team==='Team1'" class="uppercasee">
+					<span >{{navParams.data.Team1.Players[0]["Name"]}}
+					</span>
+				</span>
+				<span *ngIf="navParams.data.Team1.Players.length == 1 && TeamAScore.Team==='Team2'" class="uppercasee">
+					<span >{{navParams.data.Team2.Players[0]["Name"]}}
+					</span>
+				</span>
+				</span>
+				</p>
+		</ion-col>
+		</ion-row>
+
+	<!--Event singles or Doubles  Firstserve.Team1Active or Firstserve.Team2Active Right or Left-->
+    <ion-row *ngIf="navParams.data.GameStatus!==0">
+                                        <!--   Left Side -->
+
+		<!--Event singles or Doubles  Firstserve.Team1Active true or false And Side Left side-->
+		<div *ngIf="Firstserve.Team1Side==='Left'" style="width: 45%;">
+
+			<!--Event singles Firstserve.Team1Active false-->
+			<div class="col" *ngIf="navParams.data.Team1.Players.length == 1 && Firstserve.Team1Active === false" 
+    	style="text-transform:uppercase;max-width:100%;">
+                  <div  style="padding: 0px;">
+					  	<!--Event singles Firstserve.Team1Active false Active PlayerSide Left-->
+                        <div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor teamcoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Left'">{{Firstserve.ReseivingTeamActivePlayerName}}</span>
+                        </div>
+						<!--Event singles Firstserve.Team1Active false Active PlayerSide Right-->
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor leftsidecoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">{{ Firstserve.ReseivingTeamActivePlayerName}}</span></div>
+                    </div>
+                   
+                </div>
+		<!--Event singles Firstserve.Team1Active true-->
+				<div  *ngIf="navParams.data.Team1.Players.length == 1 && Firstserve.Team1Active" style="text-transform:uppercase;max-width:100%">
+                    <div class="col">
+                        <div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln2" >:</span>
+                            <span style="color: #ef7a13;padding:2px;font-weight:bold;font-size: 14px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+							</div>
+							<div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln2" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 14px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+                        
+                    </div>
+            </div>
+
+				
+		<!--Event Doubles Firstserve.Team1Active false-->
+    	<div class="col" *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team1Active === false" 
+    	style="text-transform:uppercase;max-width:100%;">
+					<!--Event singles Firstserve.Team1Active false Active PlayerSide Right-->
+                  <div  style="padding: 0px;" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">
+                        
+                        
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor teamcoln1" >:</span>
+                        <span class="plyrname">{{Firstserve.ReseivingTeamPlayerName}}</span>
+                        </div>
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor leftsidecoln1" >:</span>
+                        <span class="plyrname">{{Firstserve.ReseivingTeamActivePlayerName}}</span></div>
+                    </div>
+                   
+                </div>
+
+				<!--Event Doubles Firstserve.Team1Active true-->
+				<div  *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team1Active" style="text-transform:uppercase;max-width:100%">
+                    <!--Event Doubles Firstserve.Team1Active false Active PlayerSide Right-->
+					<div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">
+                        
+						<div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln2" >:</span>
+                            <span style="padding:2px;font-size: 13px;">{{Firstserve.ServingTeamPlayerName}}</span>
+							</div>
+							<div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln2" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+                        
+                    </div>
+					<!--Event Doubles Firstserve.Team1Active false Active PlayerSide Left-->
+                    <div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">
+						<div class="row" style="padding-bottom: 4px;">
+                            <span  class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln3" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px 2px 2px 5px;font-size: 13px;">{{ Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+
+						<div class="whitecolor row" style="padding-bottom: 4px;">
+                            <span style="padding:2px;">Right Side</span><span class="whitecolor teamcoln3" >:</span>
+                            <span style="padding:2px;font-size: 13px;">{{Firstserve.ServingTeamPlayerName}}</span>
+                        </div>
+					</div>
+            </div>
+
+
+				</div>
+
+				<!--Event singles or Doubles Firstserve.Team2Active true or false and Side Left-->
+				<div *ngIf="Firstserve.Team2Side==='Left'" style="width:45%;">
+
+					<!--Event singles Firstserve.Team2Active false-->
+			<div class="col" *ngIf="navParams.data.Team2.Players.length == 1 && Firstserve.Team2Active === false" 
+    	style="text-transform:uppercase;max-width:100%;">
+                  <div  style="padding: 0px;">
+					  <!--Event singles Firstserve.Team2Active false Active PlayerSide Left-->
+                        <div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor teamcoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Left'">{{Firstserve.ReseivingTeamActivePlayerName}}</span>
+                        </div>
+						 <!--Event singles Firstserve.Team2Active false Active PlayerSide Right-->
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor leftsidecoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">{{ Firstserve.ReseivingTeamActivePlayerName}}</span></div>
+                    </div>
+                   
+                </div>
+
+				<!--Event singles Firstserve.Team2Active true-->
+				<div  *ngIf="navParams.data.Team2.Players.length == 1 && Firstserve.Team2Active" style="text-transform:uppercase;max-width:100%">
+                    <div class="col">
+                        <div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln2" >:</span>
+                            <span style="color: #ef7a13;padding:2px;font-weight:bold;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+							</div>
+							<div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln2" >:</span>
+                            <span style="color: #ef7a13;font-weight:bold;padding:2px;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+                        
+                    </div>
+            </div>
+
+					<!--Event Doubles Firstserve.Team2Active false-->
+					<div class="col" *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team2Active === false" style="text-transform:uppercase;max-width: 100%;">
+						<div  style="padding: 0px;" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">
+							
+							
+							<div class=" row" style="padding-bottom: 4px;">
+							<span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln4" >:</span>
+							<span class="plyrname">{{Firstserve.ReseivingTeamPlayerName}}</span>
+							</div>
+							<div class=" row" style="padding-bottom: 4px;">
+							<span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln4" >:</span>
+							<span class="plyrname">{{ Firstserve.ReseivingTeamActivePlayerName}}</span>
+							</div>
+						</div>
+                	</div>
+
+
+
+					<!--Event Doubles Firstserve.Team2Active true-->
+					<div  *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team2Active" style="text-transform:uppercase;max-width: 100%;">
+						<!--Event Doubles Firstserve.Team2Active false Active PlayerSide Right-->
+				    <div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">
+                       
+						 <div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln5" >:</span>
+                            <span style="padding:2px;font-size: 13px;">{{Firstserve.ServingTeamPlayerName}}</span>
+							</div>
+							 <div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln5" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+				 </div>
+
+				 	<!--Event Doubles Firstserve.Team2Active false Active PlayerSide Left-->
+                    <div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">
+                      
+						<div class="row" style="padding-bottom: 4px;">
+                            <span  class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln6" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px 2px 2px 5px;font-size: 13px;">{{ Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+						 <div class="whitecolor row" style="padding-bottom: 4px;">
+                            <span style="padding:2px;">Right Side</span><span class="whitecolor teamcoln6" >:</span>
+                            <span style="padding:2px;font-size: 13px;">{{Firstserve.ServingTeamPlayerName}}</span>
+                        </div>
+                        
+                    </div>
+            </div>
+
+				</div>	
+
+                <div class="col" style="max-width: 10%">
+                	<div style="padding: 2px 2px 7px 2px;color: #fff;">|</div>
+                	<div style="padding: 2px;color: #fff;">|</div>
+                </div>
+                                   <!--  Right Side -->
+
+				<!--Event singles or Doubles  Firstserve.Team1Active true or false And Right side-->
+				<div *ngIf="Firstserve.Team1Side==='Right'" style="width:45%;">
+					
+
+					<!--Event singles Firstserve.Team1Active false and side Right-->
+			<div class="col" *ngIf="navParams.data.Team1.Players.length == 1 && Firstserve.Team1Active === false" 
+    	style="text-transform:uppercase;max-width:100%;">
+                  <div  style="padding: 0px;">
+					  	<!--Event singles Firstserve.Team1Active false Active PlayerSide Right-->
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor leftsidecoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">{{ Firstserve.ReseivingTeamActivePlayerName}}</span></div>
+
+
+					  	<!--Event singles Firstserve.Team1Active false Active PlayerSide Left-->
+                        <div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor teamcoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Left'">{{Firstserve.ReseivingTeamActivePlayerName}}</span>
+                        </div>
+						
+                    </div>
+                   
+                </div>
+		<!--Event singles Firstserve.Team1Active true and side Right-->
+				<div  *ngIf="navParams.data.Team1.Players.length == 1 && Firstserve.Team1Active" style="text-transform:uppercase;max-width:100%">
+                    <div class="col">
+						<!--Event singles Firstserve.Team1Active true Active PlayerSide Right-->
+						<div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln2" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+						<!--Event singles Firstserve.Team1Active true Active PlayerSide Left-->
+                        <div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln2" >:</span>
+                            <span style="color: #ef7a13;padding:2px;font-weight:bold;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+							</div>
+							
+                        
+                    </div>
+            </div>
+
+				<!--Event Doubles Firstserve.Team1Active false and side Right-->
+					<div class="col" *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team1Active === false" style="text-transform:uppercase;max-width: 100%;">
+					<!--Event Doubles Firstserve.Team1Active Active Player Side Right or Left-->
+					<div  style="padding: 0px;" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">
+						<div class=" row" style="padding-bottom: 4px;">
+							<span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln7" >:</span>
+							<span class="plyrname">{{ Firstserve.ReseivingTeamActivePlayerName}}</span>
+							</div>
+						
+						<div class=" row" style="padding-bottom: 4px;">
+							<span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln7" >:</span>
+							<span class="plyrname">{{Firstserve.ReseivingTeamPlayerName}}</span>
+							</div>
+
+							
+							
+						</div>
+					</div>
+					<!--Event Doubles Firstserve.Team1Active true and side Right-->
+					<div  *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team1Active" style="text-transform:uppercase;max-width: 100%;">
+                    <!--Event Doubles Firstserve.Team1Active true and side Right-->
+					<div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">
+                        
+                        <div class=" row" style="padding-bottom: 4px;">
+                            <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln8" >:</span>
+                            <span  style="color: #ef7a13 ;font-weight:bold;padding:2px 2px 2px 5px;font-size: 13px;">{{ Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+						<div class="row" style="padding-bottom: 4px;">
+                            <span  class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln8" >:</span>
+                            <span style="padding:2px;font-size: 13px;color:#fff;">{{Firstserve.ServingTeamPlayerName}}</span>
+                        </div>
+                    </div>
+					<!--Event Doubles Firstserve.Team1Active true and side Left-->
+                    <div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">
+                        
+                        <div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln9" >:</span>
+                            <span style="padding:2px;font-size: 13px;color:#fff;">{{Firstserve.ServingTeamPlayerName}}</span>
+                        </div>
+						<div class="row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln9" >:</span>
+                            <span  style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;">{{Firstserve.ServingTeamActivePlayerName}}</span>
+							</div>
+                    </div>
+            </div>
+
+				</div>
+				<!--Event singles or Doubles  Firstserve.Team2Active true or false And Right side-->
+				<div *ngIf="Firstserve.Team2Side==='Right'" style="width:45%;">
+
+					<!--Event singles Firstserve.Team2Active false-->
+			<div class="col" *ngIf="navParams.data.Team2.Players.length == 1 && Firstserve.Team2Active === false" 
+    	style="text-transform:uppercase;max-width:100%;">
+                  <div  style="padding: 0px;">
+
+					  <!--Event singles Firstserve.Team2Active false Active PlayerSide Right-->
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor leftsidecoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">{{ Firstserve.ReseivingTeamActivePlayerName}}</span></div>
+					  
+					  <!--Event singles Firstserve.Team2Active false Active PlayerSide Left-->
+                        <div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor teamcoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Left'">{{Firstserve.ReseivingTeamActivePlayerName}}</span>
+                        </div>
+						 
+                    </div>
+                   
+                </div>
+
+				<!--Event singles Firstserve.Team2Active true-->
+				<div  *ngIf="navParams.data.Team2.Players.length == 1 && Firstserve.Team2Active" style="text-transform:uppercase;max-width:100%">
+                    <div class="col">
+						<!--Event singles Firstserve.Team2Active false Active PlayerSide Right-->
+						<div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln2" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+						<!--Event singles Firstserve.Team2Active false Active PlayerSide Left-->
+                        <div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln2" >:</span>
+                            <span style="color: #ef7a13;padding:2px;font-weight:bold;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+							</div>
+							
+                     </div>
+            </div>
+
+
+
+
+						<!--Event Doubles Firstserve.Team2Active false and side Right-->
+						<div class="col" *ngIf="navParams.data.Team2.Players.length == 2 && Firstserve.Team2Active===false" style="text-transform:uppercase;max-width: 100%;">
+							<div  style="padding: 0px;" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">
+								<!--Event Doubles Firstserve.Team2Active Active false Player Side Right or Left-->
+								<div class=" row" style="padding-bottom: 4px;">
+									<span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln10" >:</span>
+									<span class="plyrname">{{Firstserve.ReseivingTeamActivePlayerName}}</span>
+									</div>
+
+									<div class=" row" style="padding-bottom: 4px;">
+									<span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln10" >:</span>
+									<span class="plyrname">{{Firstserve.ReseivingTeamPlayerName}}</span>
+									</div>
+
+									</div>
+									
+						</div>
+						<!--Event Doubles Firstserve.Team2Active true and side Right-->
+						<div  *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team2Active" style="text-transform:uppercase;max-width:100%;">
+							 <!--Event Doubles Team2 Active true and Active Player side Right-->
+							<div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">
+								<div class="whitecolor row" style="padding-bottom: 4px;">
+									<span style="padding:2px;">Right Side</span><span class="whitecolor teamcoln11" >:</span>
+									<span style="color: #ef7a13 ;font-weight:bold;padding:2px 2px 2px 5px;font-size: 13px;">{{ Firstserve.ServingTeamActivePlayerName}}</span>
+								</div>
+								<div class="row" style="padding-bottom: 4px;">
+									<span  class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln11" >:</span>
+									<span style="padding:2px;font-size: 13px;color:#fff;">{{Firstserve.ServingTeamPlayerName}}</span>
+								</div>
+							</div>
+							<!--Event Doubles Team2 Active true and Active Player side Left-->
+							<div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">
+								
+								<div class="row" style="padding-bottom: 4px;">
+									<span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln12" >:</span>
+									<span style="padding:2px;font-size: 13px;color:#fff;">{{Firstserve.ServingTeamPlayerName}}</span>
+								</div>
+
+								<div class="row" style="padding-bottom: 4px;">
+										<span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln12" >:</span>
+									<span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;" >{{Firstserve.ServingTeamActivePlayerName}}</span>
+									</div>
+							</div>
+					</div>
+
+				</div>
+
+				
+
+ </ion-row>
+	</div>		
+</div>
+<div  style="width:18%;margin:10px 0px 0px 0px;" *ngIf="navParams.data.GameStatus===0" class="row" justify-content-center>	
+         <p class="whitecolor" style="padding-left:5px;margin-bottom:0px;margin-top: 55px;">TIMEOUTS</p>
+</div>
+<div  style="width:18%;" *ngIf="navParams.data.GameStatus!==0" class="row" justify-content-center>	
+         <p class="whitecolor" style="padding-left:5px;margin-bottom:10px;">TIMEOUTS</p>
+</div>
+</div>
+<div class="scoresheetdiv">
+ <div>
+ <div *ngIf="TeamAScore.SetOneScores !=undefined" class="row" style="width: 100%;margin:4px 0">
+<div style="width: 15%" justify-content-center>
+			<button *ngIf="TeamAScore.SetOneServe === false && TeamAScore.SetoneActive === true" class="button button-positive buttonmainstyles btnsverun" style="left:25%;background:#fff;">
+					     <p class="servess">S</p>
+					    </button>
+						 <button *ngIf="TeamAScore.SetOneServe === true"  class="button button-positive buttonmainstyles btnbfratve" style="left:25%;background:#fff;">
+					     <p class="servess">S</p>
+					    </button>
+					    <button *ngIf="TeamAScore.SetOneServe === false && TeamAScore.SetoneActive === false && Firstserve.GameStart === undefined"  class="button button-positive  buttonmainstyles btnbfratve" style="left:25%;">
+					     <p class="servess">S</p>
+					    </button>
+						<button *ngIf="TeamAScore.SetOneServe === false && TeamAScore.SetoneActive === false && Firstserve.GameStart != undefined && Firstserve.GameStart===false"  class="button button-positive  buttonmainstyles btnbfratve" style="left:25%;">
+					     <p class="servess">S</p>
+					    </button>
+                        <button *ngIf="TeamAScore.SetOneServe === false && TeamAScore.SetoneActive === false && Firstserve.GameStart !=undefined && Firstserve.GameStart" class="button button-positive  buttonmainstyles btnbfratve" style="left:25%;">
+					     <p class="servess">S</p>
+					    </button>
+</div>
+				<div  style="width:70%;" justify-content-center class="row">
+					<div *ngIf="scoresobj.FormateName ==='1 To 21 Win By 2'" style="width:443px;" text-wrap class="row">
+					    	<div *ngFor="let score of TeamAScore.SetOneScores" class="buttonstylediv">
+							    <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== true && time === false" class="button button-positive btnsverun picklebtn">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== true && time"  class="button button-positive btnsverun picklebtn">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false &&score.clicked===false && score.Status=== false" class="button button-positive buttonmainstyles btnbfratve" style="left:0;right:0;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== true" class="button button-positive buttonmainstyles" style="left:0;right:0;
+				    background-color:#6aae6d;color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point=== false" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point && time" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point && time=== false" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    </div> 
+							 </div>
+							<div *ngIf="scoresobj.FormateName ==='1 To 15 Win By 2'" style="width:328px;" text-wrap class="row">
+							    <div *ngFor="let score of TeamAScore.SetOneScores" class="buttonstylediv">
+							   <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== true && time === false" class="button button-positive btnsverun picklebtn">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== true && time"  class="button button-positive btnsverun picklebtn">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== false" class="button button-positive buttonmainstyles btnbfratve" style="left:0;right:0;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== true" class="button button-positive buttonmainstyles" style="left:0;right:0;
+				    background-color:#6aae6d;color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point=== false" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point && time" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point && time=== false" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    </div>
+							 </div> 
+                          <div *ngIf="scoresobj.FormateName ==='2 Of 3 To 11 Win By 2'" style="width:434px;" text-wrap class="row" justify-content-center>
+							 	<div *ngFor="let score of TeamAScore.SetOneScores" class="buttonstylediv">
+							    <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== true && time === false" class="button button-positive btnsverun picklebtn">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== true && time"  class="button button-positive btnsverun picklebtn">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== false" class="button button-positive buttonmainstyles btnbfratve" style="left:0;right:0;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== true" class="button button-positive buttonmainstyles" style="left:0;right:0;
+				     background-color:#6aae6d;color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false &&  score.clicked===true && score.ServicesDowen=== false && score.Point=== false" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point && time" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point && time=== false" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    </div> 
+							 </div> 
+                      </div>
+                     <div  style="width:15%" class="row" justify-content-center>
+					    <div *ngFor="let set of TeamAScore.SetOneTimeOuts" class="buttonstylediv">
+					    <button *ngIf="set.complete===false && set.Status === false"  class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					    <button *ngIf="set.complete===false && set.Status === true && time === false" class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					     <button *ngIf="set.complete===false && set.Status=== true && time" class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					     <button *ngIf="set.Status ==='pending'" (click)="TimeOutUndo(set)" class="button button-positive buttonmainstyles btnsverun btnbfratve">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					    <button *ngIf="set.complete && set.ClickedTime === true && time === false" class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+						 <button *ngIf="set.complete && set.ClickedTime === true && time"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+						<button *ngIf="set.complete && set.ClickedTime === false"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					    </div>
+					    </div>
+		 </div>
+           <div *ngIf="TeamAScore.SetTwoScores !=undefined"  class="row" style="width: 100%;margin:4px 0">
+					  <div style="width: 15%" justify-content-center>
+                        <button *ngIf="TeamAScore.SetTwoServe === true "  class="button button-positive buttonmainstyles btnbfratve" style="left:25%;background:#fff;">
+					     <p class="servess">S</p>
+					    </button>
+					    
+					    <button *ngIf="TeamAScore.SetTwoServe === false"  class="button button-positive  buttonmainstyles btnbfratve" style="left:25%;">
+					     <p class="servess">S</p>
+					    </button>
+ </div>
+<div  style="width:70%;" class="row" justify-content-center>
+					    <div *ngFor="let score of TeamAScore.SetTwoScores" class="buttonstylediv">
+							   <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== true && time === false" class="button button-positive btnsverun picklebtn">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== true && time"  class="button button-positive btnsverun picklebtn">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===false && score.Status === false" class="button button-positive btnsverun buttonmainstyles btnbfratve" style=" background-color: rgba(255, 255, 255, 0.18);border-radius: 3px;left:0;right:0;">
+							     <p  class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== true"  class="button button-positive buttonmainstyles" style="left:0;right:0;border: 1px solid rgba(202, 200, 200, 0.46);
+				     background-color:#6aae6d;color:#fff;">
+							     <p  class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point=== false" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point && time" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point && time=== false" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+	                        </div>
+					    </div>
+                       <div  style="width:15%" class="row" justify-content-center>
+					    <div *ngFor="let set of TeamAScore.SetTwoTimeOuts" class="buttonstylediv">
+						    <button *ngIf="set.complete===false && set.Status === false"  class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					   <button *ngIf="set.complete===false && set.Status === true && time === false" class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					     <button *ngIf="set.complete===false && set.Status=== true && time" class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					     <button *ngIf="set.Status=='pending'" class="button button-positive buttonmainstyles btnsverun btnbfratve">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					   <button *ngIf="set.complete && set.ClickedTime === true && time === false" class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+						 <button *ngIf="set.complete && set.ClickedTime === true && time"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+						<button *ngIf="set.complete && set.ClickedTime === false"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					    </div>
+					   </div>
+		 </div>
+         <div *ngIf="TeamAScore.SetThreeScores !=undefined" class="row" style="width: 100%;margin:4px 0">
+                   <div style="width: 15%" justify-content-center>
+                         <button *ngIf="TeamAScore.SetThreeServe === true "  class="button button-positive buttonmainstyles btnbfratve" style="left:25%;background:#fff;">
+					     <p class="servess">S</p>
+					    </button>
+					    <button *ngIf="TeamAScore.SetThreeServe === false"  class="button button-positive  buttonmainstyles btnbfratve" style="left:25%;">
+					     <p class="servess">S</p>
+					    </button>
+                  </div>
+                   <div  style="width:70%;" class="row" justify-content-center >
+					    <div *ngFor="let score of TeamAScore.SetThreeScores" class="buttonstylediv">
+					    <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== true && time === false" class="button button-positive btnsverun picklebtn">
+							     <p class="padmargo">{{score.Score}}</p>
+						</button>
+						<button *ngIf="score.Hide===false && score.clicked===false && score.Status=== true && time"  class="button button-positive btnsverun picklebtn">
+							<p class="padmargo">{{score.Score}}</p>
+						</button>
+					     <button *ngIf="score.Hide===false && score.clicked===false && score.Status=== false" class="button button-positive buttonmainstyles btnbfratve" style="left:0;right:0;">
+					     <p style="margin:0px;padding-top: 7px;">{{score.Score}}</p>
+					    </button>
+					    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== true"  class="button button-positive buttonmainstyles" style="left:0;right:0;
+		     background-color:#6aae6d;color:#fff;">
+					     <p style="margin:0px;padding-top: 7px;">{{score.Score}}</p>
+					    </button>
+					    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point=== false" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point && time" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							     <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false && score.Point && time=== false" class="button button-positive buttonmainstyles" style="
+				    background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+					    </div>
+					    </div>
+                    <div  style="width:15%" class="row" justify-content-center>
+					    <div *ngFor="let set of TeamAScore.SetThreeTimeOuts" class="buttonstylediv">
+					    <button *ngIf="set.complete===false && set.Status === false"  class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					   <button *ngIf="set.complete===false && set.Status === true && time === false" class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					     <button *ngIf="set.complete===false && set.Status=== true && time" class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					     <button *ngIf="set.Status==='pending'" class="button button-positive buttonmainstyles btnsverun btnbfratve">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					    <button *ngIf="set.complete && set.ClickedTime === true && time === false" class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+						 <button *ngIf="set.complete && set.ClickedTime === true && time"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+						<button *ngIf="set.complete && set.ClickedTime === false"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					    </div>
+					   </div>
+		</div>
+  </div>
+</div>
+<div class="myrotate scoresheetdiv" style="margin-top:10px;">
+   <div>
+          <div *ngIf="TeamBScore.SetOneScores !=undefined" class="row" style="width: 100%;margin:4px 0">
+					  <div class="btmservebtn" style="width: 15%" justify-content-center>
+                          <button *ngIf="TeamBScore.SetOneServe === true "  class="button button-positive buttonmainstyles btnbfratve" style="left:25%;background:#fff;">
+					     <p class="servess">S</p>
+					    </button>
+					    <button *ngIf="TeamBScore.SetOneServe === false"  class="button button-positive  buttonmainstyles btnbfratve" style="left:25%;">
+					     <p class="servess">S</p>
+					    </button>
+					  </div>
+					    <div  style="width:70%;" justify-content-center class="row" >
+					    	<div *ngIf="scoresobj.FormateName ==='1 To 21 Win By 2'" style="width:433px;" text-wrap class="row">
+							     <div  *ngFor="let score of TeamBScore.SetOneScores" class="buttonstylediv">
+							    <button *ngIf="score.Hide===false && score.clicked===false" class="button button-positive buttonmainstyles btnbfratve" style="left:0;right:0;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== true"  class="button button-positive buttonmainstyles" style="left:0;right:0;
+		     background-color:#6aae6d;color:#fff;">
+					     <p style="margin:0px;">{{score.Score}}</p>
+					    </button>
+							  <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false" class="button button-positive buttonmainstyles" style="left:0;right:0;
+				   background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    </div> 
+							 </div> 
+							 <div *ngIf="scoresobj.FormateName ==='1 To 15 Win By 2'" style="width:328px;" text-wrap class="row">
+							   <div  *ngFor="let score of TeamBScore.SetOneScores" class="buttonstylediv">
+							    <button *ngIf="score.Hide===false && score.clicked===false" class="button button-positive buttonmainstyles btnbfratve" style="left:0;right:0;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== true"  class="button button-positive buttonmainstyles" style="left:0;right:0;
+		     background-color:#6aae6d;color:#fff;">
+					     <p style="margin:0px;">{{score.Score}}</p>
+					    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false" class="button button-positive buttonmainstyles" style="left:0;right:0;
+				   background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    </div> 
+							 </div>
+                      <div *ngIf="scoresobj.FormateName==='2 Of 3 To 11 Win By 2'" style="width:434px;" text-wrap class="row" justify-content-center>
+							  <div  *ngFor="let score of TeamBScore.SetOneScores" class="buttonstylediv">
+							    <button *ngIf="score.Hide===false && score.clicked===false" class="button button-positive buttonmainstyles btnbfratve" style="left:0;right:0;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== true"  class="button button-positive buttonmainstyles" style="left:0;right:0;
+		     background-color:#6aae6d;color:#fff;">
+					     <p style="margin:0px;">{{score.Score}}</p>
+					    </button>
+							    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false" class="button button-positive buttonmainstyles" style="left:0;right:0;
+				   background: rgba(255, 152, 0, 0.86);color:#fff;">
+							     <p class="padmargo">{{score.Score}}</p>
+							    </button>
+							    </div> 
+							 </div> 
+                           </div>
+                     <div  style="width:15%" class="row btmservebtn" justify-content-center>
+					    <div *ngFor="let set of TeamBScore.SetOneTimeOuts" class="buttonstylediv">
+					    <button *ngIf="set.complete===false && set.Status === false"  class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					   <button *ngIf="set.complete===false && set.Status === true && time === false" class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					     <button *ngIf="set.complete===false && set.Status=== true && time" class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					     <button *ngIf="set.Status==='pending'" class="button button-positive buttonmainstyles btnsverun btnbfratve">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					    <button *ngIf="set.complete && set.ClickedTime === true && time === false" class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+						 <button *ngIf="set.complete && set.ClickedTime === true && time"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+						<button *ngIf="set.complete && set.ClickedTime === false"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					    </div>
+					    </div>
+			</div>
+          <div *ngIf="TeamBScore.SetTwoScores !=undefined" class="row" style="width: 100%;margin:4px 0">
+						<div class="btmservebtn" style="width: 15%" justify-content-center>
+                          <button *ngIf="TeamBScore.SetTwoServe === true "  class="button button-positive buttonmainstyles btnbfratve" style="left:25%;background:#fff;">
+					     <p class="servess">S</p>
+					    </button>
+					    <button *ngIf="TeamBScore.SetTwoServe === false"  class="button button-positive  buttonmainstyles btnbfratve" style="left:25%;">
+					     <p class="servess">S</p>
+					    </button>
+					  </div>
+                       <div  style="width:70%;" class="row" justify-content-center>
+					    <div *ngFor="let score of TeamBScore.SetTwoScores" class="buttonstylediv">
+						    <button *ngIf="score.Hide===false && score.clicked===false"  class="button button-positive buttonmainstyles btnbfratve" style="left:0;right:0;">
+						     <p  class="padmargo">{{score.Score}}</p>
+						    </button>
+						    <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== true"  class="button button-positive buttonmainstyles" style="left:0;right:0;
+		     background-color:#6aae6d;color:#fff;">
+					     <p style="margin:0px;padding-top: 7px;">{{score.Score}}</p>
+					    </button>
+                        <button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false"  class="button button-positive buttonmainstyles" style="left:0;right:0;
+			    background: rgba(255, 152, 0, 0.86);color:#fff;">
+						     <p  class="padmargo">{{score.Score}}</p>
+						    </button>
+                     </div>
+					    </div>
+                    <div  style="width:15%" class="row btmservebtn" justify-content-center>
+					    <div *ngFor="let set of TeamBScore.SetTwoTimeOuts" class="buttonstylediv">
+					    <button *ngIf="set.complete===false && set.Status === false"  class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					   <button *ngIf="set.complete===false && set.Status === true && time === false" class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					     <button *ngIf="set.complete===false && set.Status=== true && time" class="button button-positive btnbfratve buttonmainstyles">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					     <button *ngIf="set.Status==='pending'" (click)="TimeOutUndo(set)"  class="button button-positive buttonmainstyles btnsverun btnbfratve">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					    <button *ngIf="set.complete && set.ClickedTime === true && time === false" class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+						 <button *ngIf="set.complete && set.ClickedTime === true && time"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+						<button *ngIf="set.complete && set.ClickedTime === false"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+					     <p class="padmargo">{{set.TimeOut}}</p>
+					    </button>
+					    </div>
+					    
+					   </div>
+			</div>
+		  <div *ngIf="TeamBScore.SetThreeScores !=undefined" class="row" style="width: 100%;margin:4px 0">
+				<div class="btmservebtn" style="width: 15%" justify-content-center>
+					<button *ngIf="TeamBScore.SetThreeServe === true "  class="button button-positive buttonmainstyles btnbfratve" style="left:25%;background:#fff;">
+							<p class="servess">S</p>
+					</button>
+					<button *ngIf="TeamBScore.SetThreeServe === false"  class="button button-positive  buttonmainstyles btnbfratve" style="left:25%;">
+						<p class="servess">S</p>
+					</button>
+				</div>
+				<div  style="width:70%;" class="row" justify-content-center>
+					<div *ngFor="let score of TeamBScore.SetThreeScores" class="buttonstylediv">
+						<button *ngIf="score.Hide===false && score.clicked===false"  class="button button-positive buttonmainstyles btnbfratve" style="left:0;right:0;">
+								<p  class="padmargo">{{score.Score}}</p>
+						</button>
+						<button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== true"  class="button button-positive buttonmainstyles" style="left:0;right:0;
+						background-color:#6aae6d;color:#fff;">
+								<p style="margin:0px;padding-top: 7px;">{{score.Score}}</p>
+						</button>
+						<button *ngIf="score.Hide===false && score.clicked===true && score.ServicesDowen=== false"  class="button button-positive buttonmainstyles" style="left:0;right:0;background: rgba(255, 152, 0, 0.86);color:#fff;">
+								<p  class="padmargo">{{score.Score}}</p>
+						</button>
+					</div>
+				</div>
+				<div   style="width:15%" class="row btmservebtn" justify-content-center>
+					<div *ngFor="let set of TeamBScore.SetThreeTimeOuts" class="buttonstylediv">
+						<button *ngIf="set.complete===false && set.Status === false"  class="button button-positive btnbfratve buttonmainstyles">
+								<p class="padmargo">{{set.TimeOut}}</p>
+						</button>
+						<button *ngIf="set.complete===false && set.Status === true && time === false" class="button button-positive btnbfratve buttonmainstyles">
+								<p class="padmargo">{{set.TimeOut}}</p>
+						</button>
+						<button *ngIf="set.complete===false && set.Status=== true && time" class="button button-positive btnbfratve buttonmainstyles">
+								<p class="padmargo">{{set.TimeOut}}</p>
+						</button>
+						<button *ngIf="set.Status==='pending'" class="button button-positive buttonmainstyles btnsverun btnbfratve">
+								<p class="padmargo">{{set.TimeOut}}</p>
+						</button>
+						<button *ngIf="set.complete && set.ClickedTime === true && time === false" class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+								<p class="padmargo">{{set.TimeOut}}</p>
+						</button>
+						<button *ngIf="set.complete && set.ClickedTime === true && time"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+								<p class="padmargo">{{set.TimeOut}}</p>
+						</button>
+						<button *ngIf="set.complete && set.ClickedTime === false"  class="button button-positive btnbfratve buttonmainstyles btnbfratve" style="color:#fff; background: rgba(255, 152, 0, 0.86);">
+								<p class="padmargo">{{set.TimeOut}}</p>
+						</button>
+					</div>
+				</div>
+		    </div>
+    </div>
+</div>
+<div class="row myrotate myrotateclassforserve">
+	<div class="btmsrvdiv" justify-content-center align-items-center>
+			<p class="bottomserve">SERVE</p>
+	</div>
+	<div class="row "  [ngClass]="{ 'btmcenterdv': Add11formate, 'btmcenterdv15': !Add11formate  }" *ngIf="navParams.data.GameStatus===0">
+		<p class="whitecolor"><span>TEAM :</span>
+			<span *ngIf="navParams.data.Team1.Players.length == 2 && TeamBScore.Team==='Team1'" class="uppercasee">
+				<span >{{navParams.data.Team1.Players[0]["Name"]}}/
+				{{navParams.data.Team1.Players[1]["Name"]}}
+				</span>
+			</span>
+			<span *ngIf="navParams.data.Team1.Players.length == 2 && TeamBScore.Team==='Team2'" class="uppercasee">
+				<span >{{navParams.data.Team2.Players[0]["Name"]}}/
+				{{navParams.data.Team2.Players[1]["Name"]}}
+				</span>
+			</span>
+			<span *ngIf="navParams.data.Team1.Players.length == 1 && TeamBScore.Team==='Team1'" class="uppercasee">
+				<span >{{navParams.data.Team1.Players[0]["Name"]}}
+				</span>
+			</span>
+			<span *ngIf="navParams.data.Team1.Players.length == 1 && TeamBScore.Team==='Team2'" class="uppercasee">
+				<span >{{navParams.data.Team2.Players[0]["Name"]}}
+				</span>
+			</span>
+		</p>
+	</div>
+	<div class="downtimeout" align-items-center>	
+	<p class="downtimeoutptag">TIMEOUTS</p>
+	</div>
+</div>
+<div *ngIf="Firstserve.Winner != undefined " class="row winerdivv"  >
+               <p class="wnerp">Match Winners Scores : </p>
+                       <div class="winertm" *ngIf="Firstserve.Winner.winnerteam==='team1' ">
+                                <button  class="button button-positive buttonstyleforwinner ">
+                                 <p class="winerbtnp">{{Firstserve.Winner.Team1score}}</p>
+                                </button>
+                               <button  class="button button-positive buttonstyleforwinner col">
+                                 <p class="wnrbtnptag">{{Firstserve.Winner.Team2score}}</p>
+                                </button>
+                       </div>
+                         <div class="winertm" *ngIf="Firstserve.Winner.winnerteam==='team2'">
+                                <button  class="button button-positive buttonstyleforwinner ">
+                                 <p  class="winerbtnp">{{Firstserve.Winner.Team2score}}</p>
+                                </button>
+                               <button  class="button button-positive buttonstyleforwinner col">
+                                 <p class="wnrbtnptag">{{Firstserve.Winner.Team1score}}</p>
+                                </button>
+                       </div>
+                         <p class="initialsp">Initials</p>
+					<div style="width:10%">
+                            <button  class="button button-positive initialbtn col row">
+                          <ion-input  type="text" value="" maxlength="2"></ion-input>
+                          </button>
+                </div>
+                      <div *ngIf="Firstserve.Winner.winnerteam === 'team1'" class="wnrdv">
+							<div class="row" *ngIf="navParams.data.Team1.Players.length === 2">
+								<button   class="button button-positive winnerss">
+                                 <p class="winerbtnp">{{navParams.data.Team1.Players[0]["Name"]}}</p>
+                                </button>
+                               <button  class="button button-positive winnerss col">
+                                 <p  class="wnrbtnptag">{{navParams.data.Team1.Players[1]["Name"]}}</p>
+                                </button>
+							</div>	
+							<div class="row" *ngIf="navParams.data.Team1.Players.length === 1">
+								<button   class="button button-positive winnerss">
+                                 <p class="winerbtnp">{{navParams.data.Team1.Players[0]["Name"]}}</p>
+                                </button>
+							</div>	
+                       </div>
+                        <div class="row wnrdv" *ngIf="Firstserve.Winner.winnerteam === 'team2'">
+							<div class="row" *ngIf="navParams.data.Team2.Players.length === 2">
+								<button   class="button button-positive winnerss">
+                                 <p class="winerbtnp">{{navParams.data.Team2.Players[0]["Name"]}}</p>
+                                </button>
+                               <button  class="button button-positive col winnerss">
+                                 <p  class="wnrbtnptag">{{navParams.data.Team2.Players[1]["Name"]}}</p>
+                                </button>
+							</div>	
+							<div class="row" *ngIf="navParams.data.Team2.Players.length === 1">
+								<button   class="button button-positive winnerss">
+                                 <p class="winerbtnp">{{navParams.data.Team2.Players[0]["Name"]}}</p>
+                                </button>
+							</div>	
+                       </div>
+       </div>
+      <div *ngIf="Firstserve.Gamecomplete != undefined && Firstserve.Gamecomplete === true " class="row winerdivv">
+		   		 <p class="wnerp">Match Winners Scores :</p>
+				<div *ngFor="let winner of Firstserve.winnerTeam" class="row">
+					<p class="wnerp">{{winner.set}}</p>
+					<div *ngIf="Firstserve.WinningTeam==='Team1'" class="wnrdv">
+						<button   class="button button-positive buttonstyleforwinner ">
+							<p class="winerbtnp">{{winner.Team1score}}</p>
+						</button>
+						<button  class="button button-positive buttonstyleforwinner col">
+							<p  class="wnrbtnptag">{{winner.Team2score}}</p>
+						</button>
+					</div>
+					<div *ngIf="Firstserve.WinningTeam==='Team2'" class="wnrdv">
+						<button   class="button button-positive buttonstyleforwinner ">
+							<p class="winerbtnp">{{winner.Team2score}}</p>
+						</button>
+						<button  class="button button-positive buttonstyleforwinner col">
+							<p  class="wnrbtnptag">{{winner.Team1score}}</p>
+						</button>
+					</div>
+				</div>                   
+		         <p class="initialsp">Initials</p>
+				<div style="width:10%">
+					<button  class="button button-positive initialbtn col row">
+						<ion-input  type="text" value="" maxlength="2"></ion-input>
+					</button>
+				</div>
+				<div class="row wnrdv" *ngIf="Firstserve.WinningTeam==='Team1'">
+					<div class="row " *ngIf="navParams.data.Team1.Players.length === 2">
+						<button   class="button button-positive winnerss">
+							<p class="winerbtnp">{{navParams.data.Team1.Players[0]["Name"]}}</p>
+						</button>
+						<button  class="button button-positive col winnerss">
+							<p  class="wnrbtnptag">{{navParams.data.Team1.Players[1]["Name"]}}</p>
+						</button>
+					</div>	
+					<div class="row" *ngIf="navParams.data.Team1.Players.length === 1">
+						<button   class="button button-positive winnerss">
+							<p class="winerbtnp">{{navParams.data.Team1.Players[0]["Name"]}}</p>
+						</button>
+					</div>	
+				</div>
+				<div class="row wnrdv" *ngIf="Firstserve.WinningTeam==='Team2'" >
+					<div class="row" *ngIf="navParams.data.Team2.Players.length === 2">
+						<button   class="button button-positive winnerss">
+							<p class="winerbtnp">{{navParams.data.Team2.Players[0]["Name"]}}</p>
+						</button>
+						<button  class="button button-positive col winnerss">
+							<p  class="wnrbtnptag">{{navParams.data.Team2.Players[1]["Name"]}}</p>
+						</button>
+					</div>	
+					<div class="row" *ngIf="navParams.data.Team2.Players.length === 1">
+						<button   class="button button-positive winnerss">
+							<p class="winerbtnp">{{navParams.data.Team2.Players[0]["Name"]}}</p>
+						</button>
+					</div>	
+				</div>					  
+</div>
+</ion-content>

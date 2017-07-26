@@ -1,0 +1,162 @@
+page-loginpage {
+    .logostyles{
+            width:40%;
+            height:40%;
+            margin-top:18%;
+    }
+    .center{
+        text-align: center;
+    }
+    .headicon{
+	        max-width:5%;
+        }
+    .headingstyles{
+            color: #d2dde5;
+            font-size: 20px;
+            font-weight:500;
+            cursor:pointer;
+        }
+    .contentbg{
+        background-color:#153b6d;
+        color:#fff;
+    }
+    .inputstyle{
+        border: 0px !important;
+        border-bottom: 2px solid #fff!important;
+        color:#fff;
+    }
+    .text-input-wp {
+    margin: 0px 8px 2px 8px;
+    padding: 0 8px;
+    width: calc(100% - 8px - 8px);
+     border: 0px !important;
+    line-height: 3rem;
+    }
+    item-wp.item-input-has-focus.text-input{
+        background-color:#fff!important;
+        color:#fff!important;
+    }
+    .text-input-wp:focus{
+        color:#fff!important;
+    }
+    .inputstyle:focus {
+        background-color:#fff!important;
+        color:#fff!important;
+    }
+    .opstionstyles{
+        text-align: center;
+        border: 2px solid #bcccd8;
+        background-color: #143055;
+        color:#f1ee83;
+        margin-top: 8%;
+        cursor:pointer;
+        font-size: 13px;
+        border-radius: 17px;
+        
+        
+    }
+    .opstionName{
+        letter-spacing: 0.6px;
+        font-weight:600;
+        margin: 7px 0px;
+    }
+    .democlass{
+        text-align: center;
+        background-color: #fff;
+        color:#fec010;
+        margin-top: 45%;
+        cursor:pointer;
+    }
+    .SignInShow{
+        position:fixed;
+        top:36%;
+    }
+    .SignInlogostyles{
+        border-radius: 1.5%;
+        margin-left: 38%;
+    }
+    .SignInclose{
+        margin-left: 45%!important;
+        width: 65% !important;
+        max-width: 60% !important;
+    }
+    ion-card img{
+        width:39% !important;
+        max-width:29% !important;
+        text-align: center;
+    }
+    .Signin-inputstyles{
+        border: 1px solid #0e6296;
+        color:#0e6296;
+        border-radius: 2px;
+        width:100%;
+        height:40px !important;
+        margin-top: 5%;
+        cursor:pointer;
+     }
+     .TournmentShow{
+         position:fixed;
+        top:12%;
+     }
+     .Tournment-inputstyles{
+        border: 1px solid #0e6296;
+        color:#0e6296;
+        border-radius: 2px;
+        width:100%;
+        height:40px !important;
+        cursor:pointer;
+     }
+
+     .inputplaceholder::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: #0e6296;
+    }
+    .inputplaceholder::-moz-placeholder { /* Firefox 19+ */
+        color: #0e6296;
+    }
+    .inputplaceholder:-ms-input-placeholder { /* IE 10+ */
+        color: #0e6296;
+    }
+    .inputplaceholder:-moz-placeholder { /* Firefox 18- */
+        color: #0e6296;
+    }
+    //MEDIA QUERIES FOR MOBILE SCREENCE.
+    @media screen and (min-width : 320px) and (max-width : 700px) {
+        
+        .opstionstyles{
+            text-align: center;
+            border: 2px solid #bcccd8;
+            background-color: #143055;
+            color:#f1ee83;
+            margin-top: 10%;
+            cursor:pointer;
+            font-size: 100%;
+            
+            
+        }
+        // .Logostylesinmobile ion-col[width-10]{
+        //     flex: 0 0 15% !important;
+        //     max-width: 15% !important;
+            
+        // }
+        .DemoButtoninmobile ion-col[width-10]{
+            flex: 0 0 38% !important;
+            max-width: 38% !important;
+        }
+        .logincardMobilstyles ion-col[width-50]{
+            flex: 0 0 88% !important;
+            max-width: 88% !important;
+            top:20%!important;
+
+        }
+        .SignInShow{
+            position:fixed;
+            top:20%;
+        }
+        .SignInclose{
+            margin-left: 15%!important;
+            width:100% !important;
+            max-width: 100% !important;
+        }
+        
+    }
+}

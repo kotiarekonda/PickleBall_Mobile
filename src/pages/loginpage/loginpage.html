@@ -1,0 +1,79 @@
+<!--
+  Generated template for the Loginpage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<!--LOGIN PAGE CONTENT-->
+<ion-content class="contentbg">
+  <!--Login PAGE LOGO-->
+  <ion-row>
+    <ion-col center justify-content-between class="center">
+      <img  src="assets/icon/newicon.png" class="logostyles">
+    </ion-col>
+  </ion-row>
+
+<!--LOGIN PAGE HEADINg-->
+  <ion-row class="Headingstylesinmobile">
+<ion-col justify-content-between class="center">
+  <h1 class="headingstyles">PICKLEBALL TOURNAMENTS</h1>
+</ion-col>
+</ion-row>
+
+<!--USER NAME INPUT-->
+<ion-row justify-content-center style="margin-top: 11%;" >
+    <ion-col width-75 >
+      <div >
+          <ion-input [(ngModel)]="Loginobj.LoginUserName" class="inputstyle" placeholder="UserName" type="text"></ion-input>
+      
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <!--USER Password INPUT-->
+<ion-row justify-content-center style="margin-top: 6%;">
+    <ion-col width-75 >
+      <div>
+        <!--<ion-item style="background-color: transparent;" >-->
+          <!--<ion-label style="color:#fff;"  floating>Password</ion-label>-->
+          <ion-input [(ngModel)]="Loginobj.LoginPassword"  class="inputstyle" placeholder="Password" type="password"></ion-input>
+      
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <!--Tournament directore Sign IN BUTTON Row-->
+ <ion-row *ngIf="clicktournament" justify-content-center style="margin-top: 5%;">
+    <ion-col width-75>
+      <div class="opstionstyles">
+        <span class="opstionName" (click)="TournmentDirectorLogin()" >SIGN IN</span>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <!--Referee Sign IN BUTTON Row-->
+ <ion-row *ngIf="clicktournament===false"  justify-content-center style="margin-top: 5%;">
+    <ion-col width-75>
+      <div class="opstionstyles">
+        <span class="opstionName" (click)="LoginReferee()">SIGN IN</span>
+      </div>
+    </ion-col>
+  </ion-row>
+
+   <!--Sign IN BUTTON Row-->
+ <ion-row justify-content-center style="margin-top: 6%;">
+    <ion-col width-75>
+      <div>
+        <p >Don't have an account?<strong style="margin-left:5px;color:red;"> Register</strong></p>
+      </div>
+    </ion-col>
+  </ion-row>
+  
+
+
+
+
+</ion-content>
+

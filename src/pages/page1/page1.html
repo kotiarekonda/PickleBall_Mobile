@@ -1,0 +1,128 @@
+<!--
+  Generated template for the Page1 page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <div class="row">
+        <div class="row logoo" style="width:80%;">
+        <ion-list class="selectlist">
+          <ion-item class="ionitemclass myclass">
+            <ion-label floating class="ionlabelclass">Court</ion-label>
+            <ion-select class="ionselected" >
+              <ion-option *ngFor="let court of  courtlist" (ionSelect)="selectCourt(court)">{{court.courtnumber}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-list class="selectlist">
+            <ion-item  class="ionitemclass myclass">
+              <ion-label floating class="ionlabelclass">Event</ion-label>
+              <ion-select class="ionselected" [(ngModel)]="SelectedEventName">
+            <ion-option  *ngFor="let Event of  PickleBallDetailes.EventNamesArray" (ionSelect)="SelectEvent(Event)">{{Event.EventName}}</ion-option>   
+             </ion-select>
+            </ion-item>
+         </ion-list>
+        <ion-list class="selectlist" *ngIf="Curentshedulecourt.Event != undefined && Curentshedulecourt.Event==='singles'">
+          <ion-item class="ionitemclass myclass" >
+            <ion-label floating class="ionlabelclass">Team A</ion-label>
+            <ion-select class="ionselected" *ngIf="TeamAPlayersList.length !=0">
+                <ion-option  *ngFor="let player of TeamAPlayersList" (ionSelect)="SelectTeamAplayersSingles(player)" >{{player.singlePlayer}}</ion-option>  
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-list class="selectlist" *ngIf="Curentshedulecourt.Event != undefined && Curentshedulecourt.Event==='singles'">
+          <ion-item class="ionitemclass myclass" >
+            <ion-label floating class="ionlabelclass">Team B</ion-label>
+            <ion-select class="ionselected" *ngIf="TeamBPlayersList.length!=0">
+                 <ion-option  *ngFor="let player of TeamBPlayersList" (ionSelect)="SelectTeamBplayersSingles(player)">{{player.singlePlayer}}</ion-option>    
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-list class="selectlist" *ngIf="Curentshedulecourt.Event != undefined && Curentshedulecourt.Event==='Doubles'" >
+          <ion-item class="myclass" style="background-color:transparent;">
+            <ion-label floating class="ionlabelclass">Team A</ion-label>
+            <ion-select class="ionselected" *ngIf="TeamAPlayersList.length !=0">
+                <ion-option  *ngFor="let player of TeamAPlayersList" (ionSelect)="SelectTeamAplayersDoubles(player)">{{player.firstPlayer}}/{{player.secondplayer}}</ion-option> 
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-list class="selectlist" *ngIf="Curentshedulecourt.Event != undefined && Curentshedulecourt.Event==='Doubles'">
+          <ion-item class="ionitemclass myclass" >
+            <ion-label floating class="ionlabelclass">Team B</ion-label>
+            <ion-select class="ionselected" *ngIf="TeamBPlayersList.length!=0">
+                <ion-option  *ngFor="let player of TeamBPlayersList" (ionSelect)="SelectTeamBplayersDoubles(player)">{{player.firstPlayer}}/{{player.secondplayer}}</ion-option>     
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-list class="selectlist">
+          <ion-item class="ionitemclass myclass" >
+            <ion-label floating class="ionlabelclass">Format</ion-label>
+            <ion-select class="ionselected" [(ngModel)]="SelectedFormatName">
+                  <ion-option (ionSelect)="SelectedFormat('2 of 3 to 11')">2 of 3 to 11</ion-option>
+                  <ion-option (ionSelect)="SelectedFormat('1 to 15')">1 to 15</ion-option>
+                  <ion-option (ionSelect)="SelectedFormat('1 to 21')">1 to 21</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-list class="selectlist">
+          <ion-item class="ionitemclass myclass" >
+            <ion-label floating class="ionlabelclass">Referee</ion-label>
+            <ion-select class="ionselected" >
+                <ion-option *ngFor="let refere of Referees" (ionSelect)="selectreferee(refere)">{{refere.RefereeName}}</ion-option>    
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <button ion-button style="background-color: rgba(39, 21, 21, 0.14);color:#fff;margin-left: 25px;" (click)="SheduleCourt()"><p style="font-size: 12px;">Schedule Match</p></button>
+    </div>
+    <div  text-right style="padding: 0px !important;width:20%">
+      <img text-right class="logostyles" src="assets/icon/newicon.png">
+    </div>
+</div>
+</ion-header>
+
+<ion-content class="contentbg">
+  <ion-card class="mainioncard row" style="margin-top: 50px" *ngIf="ShedulecourtListArray.length>0">
+    <div class="courtcontent" *ngFor = "let Obj of ShedulecourtListArray">
+    <div text-center>
+      <h2  class="courtnumber" style="width:100%;">{{Obj.court}}</h2>
+      </div>
+      <ion-card class="cardforteam" (click)="NextPage(Obj);" style="width:97%;">
+        <div class="row eventbackg" >
+          <div  class="eventnamestyle" text-center>
+               <h4  class="eventcolor" >{{Obj.EventName}}</h4>
+          </div>
+        </div>
+        <div>
+          <p class="Team" text-start style="color:currentColor;">Teams<span>:</span></p>
+        </div>
+        <div style="padding: 0 5px;margin-left:5px;">
+              <p class="playerdet" style="padding:0 5px ;margin-left:7px;"> {{Obj.Team1.Players[0]['Name']}}
+                <span *ngIf="Obj.Team1.Players.length > 1">/<span> {{Obj.Team1.Players[1]['Name']}}</span>
+                  </span></p>
+              <div style="text-align:center">
+                <p class="playerdet" style="width:33%;">VS</p>
+              </div>
+              <p class="playerdet" style="padding:0 5px ;margin-left:7px;">{{Obj.Team2.Players[0]['Name']}}<span *ngIf="Obj.Team2.Players.length > 1">/<span>{{Obj.Team2.Players[1]['Name']}}</span></span></p>
+        </div>
+         <div  class="alignmentfg" >
+              <p class="playerdet paddingpt"  justify-content-around><span style="font-size:12px;color:currentColor;font-weight: bold;">Format</span> <span>:</span><span>{{Obj.GameFormat}}</span></p>
+        </div>
+        <div  class="alignmentfg">
+              <p class="playerdet paddingpt"  justify-content-around><span style="font-size:12px;color:currentColor;font-weight: bold;">Referee</span> <span>:</span><span>{{Obj.Referee}}</span></p>
+        </div>
+        <div justify-content-between class="row">
+              <div  class="timepick">
+                    <p  class="timeforevent" style="color:currentColor;font-weight: bold;">Time :
+                       <span  class="timeforevent" style="font-size:10px;color:#000;">{{Obj.Time}}</span>
+                    </p>
+              </div>
+              <div>
+               <button class="adddetailsbtn"><p style="color:#20557f;">complete</p></button>
+              </div>
+        </div>
+      </ion-card>
+    </div>
+  </ion-card>
+</ion-content>

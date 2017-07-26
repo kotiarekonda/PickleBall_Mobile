@@ -1,0 +1,702 @@
+<!--
+  Generated template for the Refereescoreboardwinby1 page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  	<ion-row class="headerheight">
+	    <ion-col class="headicon" >
+	    		<ion-icon (click)="backtohome()" name="arrow-back" class="backbtnicon"  ></ion-icon>
+	    </ion-col>
+		<ion-col width-70 center class="row" justify-content-between>
+				<h4 class="nameoftourn">USAPA West Regionals</h4>
+				<div class="row time">
+					<span *ngIf="Firstserve.GameStartHovers <= 9 ">0{{Firstserve.GameStartHovers}} : </span>
+					<span *ngIf="Firstserve.GameStartHovers > 9 ">{{Firstserve.GameStartHovers}} : </span>
+					<span *ngIf="Firstserve.GameStartMints <= 9 ">0{{Firstserve.GameStartMints}} : </span>
+					<span *ngIf="Firstserve.GameStartMints > 9 ">{{Firstserve.GameStartMints}} : </span>
+					<span *ngIf="Firstserve.GameStartSecondes <= 9 ">0{{Firstserve.GameStartSecondes}}</span>
+					<span *ngIf="Firstserve.GameStartSecondes > 9 ">{{Firstserve.GameStartSecondes}}</span>
+				</div>
+		</ion-col>
+		<img (click)="logout();" text-left src="assets/icon/logout.svg">
+		<ion-col width-20>
+				
+				<div  class="gameicondiv"><img  src="assets/icon/newicon.png" class="gameicon" ></div>
+		</ion-col>
+  	</ion-row>
+</ion-header>
+<ion-content class="maincontent" >
+	<!--match detailse row in score boarde-->
+  <ion-row>
+<ion-col  width-67>
+	<!--Event lable and event name div-->
+	<div class="row">
+				<p class="eventptag">
+					<span class="playerdetailstext">EVENT</span> 
+					<span class="eventcolon">:</span>
+					<span class="detailsspan">{{navParams.data.EventName}}</span> 
+				</p>
+	</div>
+	<!--COURT lable and COURT name div-->
+	<div class="row" >
+		<p class="eventptag">
+			<span class="playerdetailstext">COURT</span>
+			<span class="eventcolon">:</span> 
+			<span class="courtnumber">{{navParams.data.courtNumber}}</span>
+		</p>
+		<button class="btnbfratve stylesbtn start" *ngIf="Firstserve.GameStart !=undefined && Firstserve.GameStart" (click)="MatchStart();" align-items-end >
+			<p class="startp">START MATCH</p>
+		</button>
+	</div>
+	<!--FORMAT lable and FORMA name div-->
+<div class="row" >
+	<p class="eventptag">
+		<span class="playerdetailstext">FORMAT</span> 
+		<span class="formatcolon1">:</span>
+		<span class="detailsspan">{{navParams.data.GameFormat}}</span>
+	</p>
+</div>
+<!--REFEREE lable and REFEREE name div-->
+<div class="row" >
+	<p class="eventptag" >
+		<span class="playerdetailstext">REFEREE</span> 
+		<span class="formatcolon1">:</span>
+		<span class="detailsspan">{{navParams.data.Referee}}</span>
+	</p>
+</div>
+</ion-col>
+<ion-col width-33>
+	<div style="padding:0px 0px;" *ngIf="navParams.data.GameStatus === 0 || time || Firstserve.Matchcomplete != undefined ">
+<ion-icon justify-content-center class="timericn" name="stopwatch"></ion-icon>
+</div>
+<div style="padding:5px 0;" *ngIf="navParams.data.GameStatus!==0 && time === false && Firstserve.Matchcomplete === undefined ">
+<ion-icon justify-content-center (click)="TimerStart('TimerIcon')" class="timericn2" name="stopwatch"></ion-icon>
+</div>
+<ion-list style="margin-bottom: 0px !important;">
+	<ion-item>
+		<ion-label> TIMER &nbsp;:<span *ngIf="navParams.data.GameStatus!==0 && time">{{timeformate}}</span></ion-label>
+		<ion-select  [(ngModel)]="timeformate" *ngIf="navParams.data.GameStatus!==0 && time=== false ">
+			<ion-option  value="1min" >1min</ion-option>
+			<ion-option  value="2min">2min</ion-option>
+			<ion-option  value="3min">3min</ion-option>
+			<ion-option  value="4min">4min</ion-option>
+			<ion-option 	value="5min">5min</ion-option>
+			<ion-option  value="6min">6min</ion-option>
+			<ion-option  value="7min">7min</ion-option>
+			<ion-option  value="10min">10min</ion-option>
+			<ion-option  value="15min">15min</ion-option>
+		</ion-select>
+	</ion-item>
+</ion-list>
+</ion-col>
+</ion-row>
+<!--TEAMS lable and team players names div-->
+<ion-row>
+	<div class="whitecolor playersrow row" >
+				 <span class="playerdetailstext">TEAMS</span> 
+				 <span  class="playercolon">:</span>
+
+				 <!--game status false show player names div-->
+				 <div *ngIf="navParams.data.GameStatus===0" style="font-size:14px;margin-left: 5px;">
+					 <!--game status zero show player names doubles div-->
+					<div *ngIf="navParams.data.Team1.Players.length == 2" class="uppercasee">
+						<span class="effect colorcls" *ngIf="navParams.data.Team1.Players[0].Served === true"  (click)="TeamASelectFirstServePlayerName(0)"> {{navParams.data.Team1.Players[0]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="navParams.data.Team1.Players[0].Served === false" (click)="TeamASelectFirstServePlayerName(0)"> {{navParams.data.Team1.Players[0]["Name"]}}
+						</span>/
+						<span class="effect colorcls" *ngIf="navParams.data.Team1.Players[1].Served === true"  (click)="TeamASelectFirstServePlayerName(1)"> {{navParams.data.Team1.Players[1]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="navParams.data.Team1.Players[1].Served === false" (click)="TeamASelectFirstServePlayerName(1)"> {{navParams.data.Team1.Players[1]["Name"]}}
+						</span>
+						<span class="ves">VS</span>
+						<span class="effect colorcls" *ngIf="navParams.data.Team2.Players[0].Served === true"  (click)="TeamBSelectFirstServePlayerName(0)" > {{navParams.data.Team2.Players[0]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="navParams.data.Team2.Players[0].Served === false"  (click)="TeamBSelectFirstServePlayerName(0)"> {{navParams.data.Team2.Players[0]["Name"]}}
+						</span>/
+						<span class="effect colorcls" *ngIf="navParams.data.Team2.Players[1].Served === true"  (click)="TeamBSelectFirstServePlayerName(1)"> {{navParams.data.Team2.Players[1]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="navParams.data.Team2.Players[1].Served === false"  (click)="TeamBSelectFirstServePlayerName(1)"> {{navParams.data.Team2.Players[1]["Name"]}}
+						</span>
+					</div>
+					<!--game status zero show player names singles div-->
+					<div *ngIf="navParams.data.Team1.Players.length == 1" class="uppercasee">
+						<span class="effect" *ngIf="navParams.data.Team1.Players[0].Served ===false">{{navParams.data.Team1.Players[0]["Name"]}}</span>
+						<span class="effect colorcls" *ngIf="navParams.data.Team1.Players[0].Served">{{navParams.data.Team1.Players[0]["Name"]}}</span>
+						<span class="ves">VS</span>
+						<span class="effect" *ngIf="navParams.data.Team2.Players[0].Served === false">{{navParams.data.Team2.Players[0]["Name"]}}</span>
+						<span class="effect colorcls" *ngIf="navParams.data.Team2.Players[0].Served">{{navParams.data.Team2.Players[0]["Name"]}}</span>
+					</div>	
+				</div>
+				<!--game status not equle to zero show player names div-->
+			    <div *ngIf="navParams.data.GameStatus !== 0" style="font-size:14px;margin-left: 5px;">
+					<!--game status not equle to zero show player names doubles div-->
+					<div *ngIf="navParams.data.Team1.Players.length == 2" class="uppercasee">
+						<div class="row">
+							<div class="column">
+								<p class="colorcls margin0cls" >{{Firstserve.nameA1}}</p> 
+								<img *ngIf="time || Firstserve.Matchcomplete != undefined"  style="padding-left:30px;" src="assets/icon/player.png">
+								<img *ngIf="time===false && Firstserve.Matchcomplete === undefined" (click)="presentProfileModal('A')" style="padding-left:30px;" src="assets/icon/player.png">
+							</div>
+							<span>/</span>
+							<div class="column">
+								<p class="margin0cls" >{{Firstserve.nameA2}}</p>
+							 </div>
+							<span class="ves">VS</span>
+									<div class="column">
+								<p class="colorcls margin0cls" >{{Firstserve.nameB1}}</p>
+								<img *ngIf="time || Firstserve.Matchcomplete != undefined"  style="padding-left:30px;" src="assets/icon/player.png">
+								<img *ngIf="time===false && Firstserve.Matchcomplete === undefined" (click)="presentProfileModal('B')" style="padding-left:30px;" src="assets/icon/player.png">
+							</div>
+							<span>/</span>
+							<div class="column">
+								<p class="margin0cls" >{{Firstserve.nameB2}}</p>
+							 </div>
+						</div>
+					</div>
+					<!--game status not equle to zero show player names singles div-->
+					<div *ngIf="navParams.data.Team1.Players.length == 1" class="uppercasee">
+						<div class="row">
+							<div class="column">
+								<p class="colorcls margin0cls" >{{Firstserve.nameA1}}</p>
+								<img *ngIf="time || Firstserve.Matchcomplete != undefined" style="padding-left:30px;" src="assets/icon/player.png">
+								<img *ngIf="time===false && Firstserve.Matchcomplete === undefined" (click)="presentProfileModal('A')" style="padding-left:30px;" src="assets/icon/player.png">
+								
+							</div>
+							<span class="ves">VS</span>
+							<div class="column">
+								<p class="margin0cls" >{{Firstserve.nameB1}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			 </div>
+</ion-row>
+<!--change serve button  and sideout buttonse and team A score and team B score showing row-->
+<ion-row>
+	<!--change serve button  and sideout buttonse colum-->
+	<ion-col  width-67>
+		<div class="sideoutscore" >
+			<!--sideout button click action-->
+				<button class="btnbfratve stylesbtn btnmarg sideclsbdr" *ngIf="Firstserve.SideOutButtonActive && time=== false" (click)="SideOut();" align-items-end ><p class="sideoutp">SIDE OUT</p></button>
+			<!--sideout button no click action-->
+				<button class="btnbfratve btnmarg sideoutppt" *ngIf="Firstserve.SideOutButtonActive === false || time"  align-items-end ><p class="sideoutp">SIDE OUT</p></button>
+				<!--change serve button serve count 1 click action-->
+				<button class="btnbfratve stylesbtn  sideclsbdr" *ngIf="navParams.data.Event === 'Doubles' && Firstserve.SideOutButtonActive === false && Firstserve.Matchcomplete === undefined && time === false" (click)="serveDownCount(1)"  align-items-end ><p class="sideoutp">CHANGE SERVE</p></button>
+				<!--change serve button serve count 2 click action-->
+				<button class="btnbfratve  sideoutppt" *ngIf="navParams.data.Event === 'Doubles' && Firstserve.SideOutButtonActive && time===false && Firstserve.Matchcomplete === undefined && Firstserve.serveChangeUndo" (click)="serveUndoCount(2)" align-items-end ><p class="sideoutp">CHANGE SERVE</p></button>
+				<!--change serve button serve no click action-->
+				<button class="btnbfratve  sideoutppt" *ngIf="navParams.data.Event === 'Doubles' && Firstserve.SideOutButtonActive && time===false && Firstserve.serveChangeUndo===false" align-items-end ><p class="sideoutp">CHANGE SERVE</p></button>
+				<!--change serve button serve no click action-->
+				<button class="btnbfratve  sideoutppt" *ngIf="navParams.data.Event === 'Doubles' && Firstserve.SideOutButtonActive && time"  align-items-end ><p class="sideoutp">CHANGE SERVE</p></button>
+		</div>
+	</ion-col>
+	<!--team A team B Score board colum -->
+	<ion-col  width-33>
+<div  justify-content-end class="column scoredv">
+			<!--Score board heading -->
+	<h4 justify-content-end class="scoreh4">Score</h4>
+	<div class="row " >
+		<!--serve icon  -->
+	     <p class="seveion"><img src="assets/icon/serve icon.png"></p>
+		 <!--game status zero Score div  -->
+		   <div *ngIf="navParams.data.GameStatus===0" class="row" style="margin-bottom: 10px;height: 40px;" >
+				<button   class="button button-positive col emptybtnfst">
+				   <p class="margin6"></p>
+				</button>
+			    <button  class="button button-positive col btnbfratve emptybtn">
+				   <p class="margin6"></p>
+			   </button>
+			    <button  class="button button-positive col btnbfratve emptybtn">
+				   <p class="margin6"></p>
+			   </button>
+			</div>
+			<!--game status zero Score div  -->
+			<div *ngIf="navParams.data.GameStatus!==0 && Firstserve.Team1!= undefined" class="row btnbfratve btnservmaindiv"  >
+								<!--Team1Active true display TeamAPoints Score board  -->
+								<button *ngIf="Firstserve.Team1Active"  class="button button-positive col teamactvestl">
+								<p class="margin6blkclr">{{Firstserve.Team1.TeamAPoints}}</p>
+								</button>
+								<!--Team2Active true display TeamBPoints Score board  -->
+								<button  *ngIf="Firstserve.Team2Active"  class="button button-positive col teamactvestl">
+								<p class="margin6blkclr">{{Firstserve.Team2.TeamBPoints}}</p>
+								</button>
+								<!--Team1Active false display TeamAPoints Score board  -->
+								<button *ngIf="Firstserve.Team1Active === false"  class="button button-positive col btnbfratve btnwdtht38">
+								<p class="margin6wtclr">{{Firstserve.Team1.TeamAPoints}}</p>
+							</button>
+							<!--Team2Active false display TeamBPoints Score board  -->
+							<button *ngIf="Firstserve.Team2Active === false"  class="button button-positive col btnbfratve btnwdtht38">
+								<p class="margin6wtclr">{{Firstserve.Team2.TeamBPoints}}</p>
+							</button>
+							<!--Team1Active true display TeamA sreve count onlye doubles-->
+							<button *ngIf="Firstserve.Team1Active && navParams.data.Event === 'Doubles'" 
+								class="button button-positive col btnbfratve btnwdtht38">
+								<p class="margin6wtclr">{{Firstserve.Team1.TeamAServeCount}}</p>
+							</button>
+							<!--Team2Active true display TeamB sreve count onlye doubles-->
+							<button *ngIf="Firstserve.Team2Active && navParams.data.Event === 'Doubles'" 
+								class="button button-positive col btnbfratve btnwdtht38">
+								<p class="margin6wtclr">{{Firstserve.Team2.TeamBServeCount}}</p>
+							</button>
+			</div>
+	</div>
+</div>
+	</ion-col>
+	</ion-row>
+<!--serve lable and single and Doubles players names showing patteren and time lable  row-->
+	<ion-row>
+		<!--serve lable colum-->
+		<ion-col width-20>
+			<!--games status not equal zero serve lable div-->
+			<div *ngIf="navParams.data.GameStatus!==0" >
+		 <p  style="color: #fff;padding-left: 30%;margin-bottom:0px;margin-top: 65px;">SERVE</p>
+	</div>
+	<!--games status zero serve lable div-->
+	<div *ngIf="navParams.data.GameStatus===0" >
+		 <p  style="color: #fff;padding-left:30%;margin-bottom:20px;">SERVE</p>
+	</div>
+		</ion-col>
+<!--single and Doubles players names showing patteren colum-->
+<ion-col width-60>
+	<!--single and Doubles players names showing patteren div applye two class applay class based on game formate-->
+<div class="column" [ngClass]="{'teamslf': Add11formate, 'teamslff': !Add11formate}">
+	<div style="text-align: center;padding-right:7%;" *ngIf="navParams.data.GameStatus!==0 && time ">
+       <img  src="assets/icon/RLarrows.png">
+    </div>
+	<div style="text-align: center;padding-right:7%;" *ngIf="navParams.data.GameStatus!==0 && Firstserve.Matchcomplete != undefined">
+       <img  src="assets/icon/RLarrows.png">
+    </div>
+	<div style="text-align: center;padding-right:7%;" *ngIf=" navParams.data.GameStatus!==0 && time===false && Firstserve.Matchcomplete === undefined" (click)="TeampositionChange()">
+       <img  src="assets/icon/RLarrows.png">
+    </div>
+	<div>
+        <ion-row class="row" *ngIf="navParams.data.GameStatus!==0">
+		 <ion-col style="max-width:45%">
+			 	<div *ngIf="Firstserve.Team1Side==='Left'">  
+			 	<span *ngIf="Firstserve.Team1Active" class="whitecolor teambet">Serving Team:</span>
+                <span *ngIf="Firstserve.Team1Active === false" class="whitecolor teambet">Receiving Team:</span>
+				</div>
+				<div *ngIf="Firstserve.Team2Side==='Left'">  
+			 	<span *ngIf="Firstserve.Team2Active" class="whitecolor teamserbet" >Serving Team:</span>
+				<span *ngIf="Firstserve.Team2Active===false" class="whitecolor teamserbet" >Receiving Team:</span>
+				</div>
+         </ion-col> 
+         <ion-col style="max-width: 10%;padding-left: 7px;"> 
+                <span class="whitecolor">|</span>
+         </ion-col>
+        <ion-col > 
+			<div *ngIf="Firstserve.Team1Side==='Right'">  
+			 	<span *ngIf="Firstserve.Team1Active" class="whitecolor teambet">Serving Team:</span>
+                <span *ngIf="Firstserve.Team1Active === false" class="whitecolor teambet">Receiving Team:</span>
+				</div>
+				<div *ngIf="Firstserve.Team2Side==='Right'">  
+			 	<span *ngIf="Firstserve.Team2Active" class="whitecolor teamserbet" >Serving Team:</span>
+				<span *ngIf="Firstserve.Team2Active===false" class="whitecolor teamserbet" >Receiving Team:</span>
+				</div>
+         </ion-col> 
+		</ion-row>
+	<ion-row  *ngIf="navParams.data.GameStatus===0">
+      <ion-col justify-content-around>
+		 <p class="whitecolor">
+		 <span>
+		 <span >TEAM :</span>
+          <span *ngIf="navParams.data.Team1.Players.length == 2 && TeamAScore.Team==='Team1'" class="uppercasee">
+					<span >{{navParams.data.Team1.Players[0]["Name"]}}/
+					{{navParams.data.Team1.Players[1]["Name"]}}
+					</span>
+				</span>
+				<span *ngIf="navParams.data.Team1.Players.length == 2 && TeamAScore.Team==='Team2'" class="uppercasee">
+					<span >{{navParams.data.Team2.Players[0]["Name"]}}/
+					{{navParams.data.Team2.Players[1]["Name"]}}
+					</span>
+				</span>
+				<span *ngIf="navParams.data.Team1.Players.length == 1 && TeamAScore.Team==='Team1'" class="uppercasee">
+					<span >{{navParams.data.Team1.Players[0]["Name"]}}
+					</span>
+				</span>
+				<span *ngIf="navParams.data.Team1.Players.length == 1 && TeamAScore.Team==='Team2'" class="uppercasee">
+					<span >{{navParams.data.Team2.Players[0]["Name"]}}
+					</span>
+				</span>
+				</span>
+				</p>
+		</ion-col>
+		</ion-row>
+
+	<!--Event singles or Doubles  Firstserve.Team1Active or Firstserve.Team2Active Right or Left-->
+    <ion-row *ngIf="navParams.data.GameStatus!==0">
+                                        <!--   Left Side -->
+
+		<!--Event singles or Doubles  Firstserve.Team1Active true or false And Side Left side-->
+		<div *ngIf="Firstserve.Team1Side==='Left'" style="width: 45%;">
+
+			<!--Event singles Firstserve.Team1Active false-->
+			<div class="col" *ngIf="navParams.data.Team1.Players.length == 1 && Firstserve.Team1Active === false" 
+    	style="text-transform:uppercase;max-width:100%;">
+                  <div  style="padding: 0px;">
+					  	<!--Event singles Firstserve.Team1Active false Active PlayerSide Left-->
+                        <div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor teamcoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Left'">{{Firstserve.ReseivingTeamActivePlayerName}}</span>
+                        </div>
+						<!--Event singles Firstserve.Team1Active false Active PlayerSide Right-->
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor leftsidecoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">{{ Firstserve.ReseivingTeamActivePlayerName}}</span></div>
+                    </div>
+                   
+                </div>
+		<!--Event singles Firstserve.Team1Active true-->
+				<div  *ngIf="navParams.data.Team1.Players.length == 1 && Firstserve.Team1Active" style="text-transform:uppercase;max-width:100%">
+                    <div class="col" style="padding: 0px;">
+                        <div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln2" >:</span>
+                            <span style="color: #ef7a13;padding:2px;font-weight:bold;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+							</div>
+							<div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln2" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+                        
+                    </div>
+            </div>
+
+				
+		<!--Event Doubles Firstserve.Team1Active false-->
+    	<div class="col" *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team1Active === false" 
+    	style="text-transform:uppercase;max-width:100%;">
+					<!--Event singles Firstserve.Team1Active false Active PlayerSide Right-->
+                  <div  style="padding: 0px;" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">
+                        
+                        
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor teamcoln1" >:</span>
+                        <span class="plyrname">{{Firstserve.ReseivingTeamPlayerName}}</span>
+                        </div>
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor leftsidecoln1" >:</span>
+                        <span class="plyrname">{{Firstserve.ReseivingTeamActivePlayerName}}</span></div>
+                    </div>
+                   
+                </div>
+
+				<!--Event Doubles Firstserve.Team1Active true-->
+				<div  *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team1Active" style="text-transform:uppercase;max-width:100%">
+                    <!--Event Doubles Firstserve.Team1Active false Active PlayerSide Right-->
+					<div class="col" style="padding: 0px;"  *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">
+                        
+						<div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln2" >:</span>
+                            <span style="padding:2px;font-size: 13px;">{{Firstserve.ServingTeamPlayerName}}</span>
+							</div>
+							<div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln2" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+                        
+                    </div>
+					<!--Event Doubles Firstserve.Team1Active false Active PlayerSide Left-->
+                    <div class="col" style="padding: 0px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">
+						<div class="row" style="padding-bottom: 4px;">
+                            <span  class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln3" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px 2px 2px 5px;font-size: 13px;">{{ Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+
+						<div class="whitecolor row" style="padding-bottom: 4px;">
+                            <span style="padding:2px;">Right Side</span><span class="whitecolor teamcoln3" >:</span>
+                            <span style="padding:2px;font-size: 13px;">{{Firstserve.ServingTeamPlayerName}}</span>
+                        </div>
+					</div>
+            </div>
+
+
+				</div>
+
+				<!--Event singles or Doubles Firstserve.Team2Active true or false and Side Left-->
+				<div *ngIf="Firstserve.Team2Side==='Left'" style="width:45%;">
+
+					<!--Event singles Firstserve.Team2Active false-->
+			<div class="col" *ngIf="navParams.data.Team2.Players.length == 1 && Firstserve.Team2Active === false" 
+    	style="text-transform:uppercase;max-width:100%;">
+                  <div  style="padding: 0px;">
+					  <!--Event singles Firstserve.Team2Active false Active PlayerSide Left-->
+                        <div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor teamcoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Left'">{{Firstserve.ReseivingTeamActivePlayerName}}</span>
+                        </div>
+						 <!--Event singles Firstserve.Team2Active false Active PlayerSide Right-->
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor leftsidecoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">{{ Firstserve.ReseivingTeamActivePlayerName}}</span></div>
+                    </div>
+                   
+                </div>
+
+				<!--Event singles Firstserve.Team2Active true-->
+				<div  *ngIf="navParams.data.Team2.Players.length == 1 && Firstserve.Team2Active" style="text-transform:uppercase;max-width:100%">
+                    <div class="col" style="padding: 0px;">
+                        <div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln2" >:</span>
+                            <span style="color: #ef7a13;padding:2px;font-weight:bold;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+							</div>
+							<div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln2" >:</span>
+                            <span style="color: #ef7a13;font-weight:bold;padding:2px;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+                        
+                    </div>
+            </div>
+
+					<!--Event Doubles Firstserve.Team2Active false-->
+					<div class="col" *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team2Active === false" style="text-transform:uppercase;max-width: 100%;">
+						<div  style="padding: 0px;" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">
+							
+							
+							<div class=" row" style="padding-bottom: 4px;">
+							<span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln4" >:</span>
+							<span class="plyrname">{{Firstserve.ReseivingTeamPlayerName}}</span>
+							</div>
+							<div class=" row" style="padding-bottom: 4px;">
+							<span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln4" >:</span>
+							<span class="plyrname">{{ Firstserve.ReseivingTeamActivePlayerName}}</span>
+							</div>
+						</div>
+                	</div>
+
+
+
+					<!--Event Doubles Firstserve.Team2Active true-->
+					<div  *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team2Active" style="text-transform:uppercase;max-width: 100%;">
+						<!--Event Doubles Firstserve.Team2Active false Active PlayerSide Right-->
+				    <div class="col" style="padding: 0px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">
+                       
+						 <div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln5" >:</span>
+                            <span style="padding:2px;font-size: 13px;">{{Firstserve.ServingTeamPlayerName}}</span>
+							</div>
+							 <div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln5" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+				 </div>
+
+				 	<!--Event Doubles Firstserve.Team2Active false Active PlayerSide Left-->
+                    <div class="col" style="padding: 0px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">
+                      
+						<div class="row" style="padding-bottom: 4px;">
+                            <span  class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln6" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px 2px 2px 5px;font-size: 13px;">{{ Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+						 <div class="whitecolor row" style="padding-bottom: 4px;">
+                            <span style="padding:2px;">Right Side</span><span class="whitecolor teamcoln6" >:</span>
+                            <span style="padding:2px;font-size: 13px;">{{Firstserve.ServingTeamPlayerName}}</span>
+                        </div>
+                        
+                    </div>
+            </div>
+
+				</div>	
+
+                <div class="col" style="max-width: 10%">
+                	<div style="padding: 2px 2px 7px 2px;color: #fff;">|</div>
+                	<div style="padding: 2px;color: #fff;">|</div>
+                </div>
+                                   <!--  Right Side -->
+
+				<!--Event singles or Doubles  Firstserve.Team1Active true or false And Right side-->
+				<div *ngIf="Firstserve.Team1Side==='Right'" style="width:45%;">
+					
+
+					<!--Event singles Firstserve.Team1Active false and side Right-->
+			<div class="col" *ngIf="navParams.data.Team1.Players.length == 1 && Firstserve.Team1Active === false" 
+    	style="text-transform:uppercase;max-width:100%;">
+                  <div  style="padding: 0px;">
+					  	<!--Event singles Firstserve.Team1Active false Active PlayerSide Right-->
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor leftsidecoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">{{ Firstserve.ReseivingTeamActivePlayerName}}</span></div>
+
+
+					  	<!--Event singles Firstserve.Team1Active false Active PlayerSide Left-->
+                        <div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor teamcoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Left'">{{Firstserve.ReseivingTeamActivePlayerName}}</span>
+                        </div>
+						
+                    </div>
+                   
+                </div>
+		<!--Event singles Firstserve.Team1Active true and side Right-->
+				<div  *ngIf="navParams.data.Team1.Players.length == 1 && Firstserve.Team1Active" style="text-transform:uppercase;max-width:100%">
+                    <div class="col" style="padding: 0px;">
+						<!--Event singles Firstserve.Team1Active true Active PlayerSide Right-->
+						<div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln2" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+						<!--Event singles Firstserve.Team1Active true Active PlayerSide Left-->
+                        <div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln2" >:</span>
+                            <span style="color: #ef7a13;padding:2px;font-weight:bold;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+							</div>
+							
+                        
+                    </div>
+            </div>
+
+				<!--Event Doubles Firstserve.Team1Active false and side Right-->
+					<div class="col" *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team1Active === false" style="text-transform:uppercase;max-width: 100%;">
+					<!--Event Doubles Firstserve.Team1Active Active Player Side Right or Left-->
+					<div  style="padding: 0px;" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">
+						<div class=" row" style="padding-bottom: 4px;">
+							<span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln7" >:</span>
+							<span class="plyrname">{{ Firstserve.ReseivingTeamActivePlayerName}}</span>
+							</div>
+						
+						<div class=" row" style="padding-bottom: 4px;">
+							<span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln7" >:</span>
+							<span class="plyrname">{{Firstserve.ReseivingTeamPlayerName}}</span>
+							</div>
+
+							
+							
+						</div>
+					</div>
+					<!--Event Doubles Firstserve.Team1Active true and side Right-->
+					<div  *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team1Active" style="text-transform:uppercase;max-width: 100%;">
+                    <!--Event Doubles Firstserve.Team1Active true and side Right-->
+					<div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">
+                        
+                        <div class=" row" style="padding-bottom: 4px;">
+                            <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln8" >:</span>
+                            <span  style="color: #ef7a13 ;font-weight:bold;padding:2px 2px 2px 5px;font-size: 13px;">{{ Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+						<div class="row" style="padding-bottom: 4px;">
+                            <span  class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln8" >:</span>
+                            <span style="padding:2px;font-size: 13px;color:#fff;">{{Firstserve.ServingTeamPlayerName}}</span>
+                        </div>
+                    </div>
+					<!--Event Doubles Firstserve.Team1Active true and side Left-->
+                    <div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">
+                        
+                        <div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln9" >:</span>
+                            <span style="padding:2px;font-size: 13px;color:#fff;">{{Firstserve.ServingTeamPlayerName}}</span>
+                        </div>
+						<div class="row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln9" >:</span>
+                            <span  style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;">{{Firstserve.ServingTeamActivePlayerName}}</span>
+							</div>
+                    </div>
+            </div>
+
+				</div>
+				<!--Event singles or Doubles  Firstserve.Team2Active true or false And Right side-->
+				<div *ngIf="Firstserve.Team2Side==='Right'" style="width:45%;">
+
+					<!--Event singles Firstserve.Team2Active false-->
+			<div class="col" *ngIf="navParams.data.Team2.Players.length == 1 && Firstserve.Team2Active === false" 
+    	style="text-transform:uppercase;max-width:100%;">
+                  <div  style="padding: 0px;">
+
+					  <!--Event singles Firstserve.Team2Active false Active PlayerSide Right-->
+						<div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor leftsidecoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">{{ Firstserve.ReseivingTeamActivePlayerName}}</span></div>
+					  
+					  <!--Event singles Firstserve.Team2Active false Active PlayerSide Left-->
+                        <div class=" row" style="padding-bottom: 4px;">
+                        <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor teamcoln1" >:</span>
+                        <span class="plyrname" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Left'">{{Firstserve.ReseivingTeamActivePlayerName}}</span>
+                        </div>
+						 
+                    </div>
+                   
+                </div>
+
+				<!--Event singles Firstserve.Team2Active true-->
+				<div  *ngIf="navParams.data.Team2.Players.length == 1 && Firstserve.Team2Active" style="text-transform:uppercase;max-width:100%">
+                    <div class="col" style="padding: 0px;">
+						<!--Event singles Firstserve.Team2Active false Active PlayerSide Right-->
+						<div class="row" style="padding-bottom: 4px;">
+                              <span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln2" >:</span>
+                            <span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+                        </div>
+						<!--Event singles Firstserve.Team2Active false Active PlayerSide Left-->
+                        <div class="whitecolor row" style="padding-bottom: 4px;">
+                                <span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln2" >:</span>
+                            <span style="color: #ef7a13;padding:2px;font-weight:bold;font-size: 13px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">{{Firstserve.ServingTeamActivePlayerName}}</span>
+							</div>
+							
+                     </div>
+            </div>
+
+
+
+
+						<!--Event Doubles Firstserve.Team2Active false and side Right-->
+						<div class="col" *ngIf="navParams.data.Team2.Players.length == 2 && Firstserve.Team2Active===false" style="text-transform:uppercase;max-width: 100%;">
+							<div  style="padding: 0px;" *ngIf="Firstserve.ReseivingTeamActivePlayerSide==='Right'">
+								<!--Event Doubles Firstserve.Team2Active Active false Player Side Right or Left-->
+								<div class=" row" style="padding-bottom: 4px;">
+									<span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln10" >:</span>
+									<span class="plyrname">{{Firstserve.ReseivingTeamActivePlayerName}}</span>
+									</div>
+
+									<div class=" row" style="padding-bottom: 4px;">
+									<span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln10" >:</span>
+									<span class="plyrname">{{Firstserve.ReseivingTeamPlayerName}}</span>
+									</div>
+
+									</div>
+									
+						</div>
+						<!--Event Doubles Firstserve.Team2Active true and side Right-->
+						<div  *ngIf="navParams.data.Team1.Players.length == 2 && Firstserve.Team2Active" style="text-transform:uppercase;max-width:100%;">
+							 <!--Event Doubles Team2 Active true and Active Player side Right-->
+							<div class="col" style="padding: 0px;" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Right'">
+								<div class="whitecolor row" style="padding-bottom: 4px;">
+									<span style="padding:2px;">Right Side</span><span class="whitecolor teamcoln11" >:</span>
+									<span style="color: #ef7a13 ;font-weight:bold;padding:2px 2px 2px 5px;font-size: 13px;">{{ Firstserve.ServingTeamActivePlayerName}}</span>
+								</div>
+								<div class="row" style="padding-bottom: 4px;">
+									<span  class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln11" >:</span>
+									<span style="padding:2px;font-size: 13px;color:#fff;">{{Firstserve.ServingTeamPlayerName}}</span>
+								</div>
+							</div>
+							<!--Event Doubles Team2 Active true and Active Player side Left-->
+							<div class="col" *ngIf="Firstserve.ServingTeamActivePlayerSide==='Left'">
+								
+								<div class="row" style="padding-bottom: 4px;">
+									<span class="whitecolor" style="padding:2px;">Right Side</span><span class="whitecolor teamcoln12" >:</span>
+									<span style="padding:2px;font-size: 13px;color:#fff;">{{Firstserve.ServingTeamPlayerName}}</span>
+								</div>
+
+								<div class="row" style="padding-bottom: 4px;">
+										<span class="whitecolor" style="padding:2px;">Left Side</span><span class="whitecolor leftsidecoln12" >:</span>
+									<span style="color: #ef7a13 ;font-weight:bold;padding:2px;font-size: 13px;" >{{Firstserve.ServingTeamActivePlayerName}}</span>
+									</div>
+							</div>
+					</div>
+
+				</div>
+
+				
+
+ </ion-row>
+	</div>		
+</div>
+</ion-col>
+<!--TIMEOUTS lable colum-->
+<ion-col width-20>
+<div  style="margin:10px 0px 0px 0px;" *ngIf="navParams.data.GameStatus!==0" class="row" justify-content-center>	
+         <p class="whitecolor" style="padding-left:5px;margin-bottom:0px;margin-top: 55px;">TIMEOUTS</p>
+</div>
+<div *ngIf="navParams.data.GameStatus===0" class="row" justify-content-center>	
+         <p class="whitecolor" style="padding-left:5px;margin-bottom:10px;">TIMEOUTS</p>
+</div>
+</ion-col>
+	</ion-row>
+</ion-content>

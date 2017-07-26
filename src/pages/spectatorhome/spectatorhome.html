@@ -1,0 +1,117 @@
+<!--
+  Generated template for the Spectatorhome page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+  <div class="row">
+        <div class="row logoo" style="width:80%;">
+           <ion-col width-80>
+          <ion-list class="selectlist">
+          <ion-item class="ionitemclass myclass">
+            <ion-label floating class="ionlabelclass">SELECT-TOURNAMENT</ion-label>
+            <ion-select class="ionselected" >
+              <ion-option *ngFor="let Tournament of navParams.data" (ionSelect)="SelectTournament(Tournament._id)">{{Tournament.TournamentName}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+           </ion-col>
+        </div>
+    <div  text-right style="padding: 0px !important;width:20%">
+      <img text-right class="logostyles" src="assets/icon/newicon.png">
+    </div>
+</div>
+</ion-header>
+
+<ion-content class="contentbg">
+  <ion-card class="mainioncard row" style="margin-top: 50px" *ngIf="Turnamentes !=undefined && Turnamentes.length>0">
+    <div class="courtcontent" *ngFor = "let Obj of Turnamentes">
+    <div text-center>
+      <h2  class="courtnumber" style="width:100%;">{{Obj.court}}</h2>
+      </div>
+      <ion-card class="cardforteam" style="width:97%;">
+        <div class="row eventbackg" >
+          <div  class="eventnamestyle" text-center>
+               <h4  class="eventcolor" >{{Obj.EventName}}</h4>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="column width-75">
+        <div>
+          <p class="Team" text-start style="color:currentColor;">Teams<span>:</span></p>
+        </div>
+        <div style="padding: 0 5px;margin-left:5px;">
+              <p *ngIf="Obj.TeamAPoints === undefined" class="playerdet" style="padding:0 5px ;margin-left:7px;color:#20557f;"> {{Obj.Team1.Players[0]['Name']}}
+                <span *ngIf="Obj.Team1.Players.length > 1">/<span> {{Obj.Team1.Players[1]['Name']}}</span>
+                  </span></p>
+                  <p *ngIf="Obj.Team1Active===false" class="playerdet" style="padding:0 5px ;margin-left:7px;color:#20557f;"> {{Obj.Team1.Players[0]['Name']}}
+                <span *ngIf="Obj.Team1.Players.length > 1">/<span> {{Obj.Team1.Players[1]['Name']}}</span>
+                  </span></p>
+                  <p *ngIf="Obj.Team1Active" class="playerdet" style="padding:0 5px ;margin-left:7px;color:#ff8500;"> {{Obj.Team1.Players[0]['Name']}}
+                <span *ngIf="Obj.Team1.Players.length > 1">/<span> {{Obj.Team1.Players[1]['Name']}}</span>
+                  </span></p>
+              <div style="text-align:center">
+                <p class="playerdet" *ngIf="Obj.Team1.Players.length > 1" style="width:99%;color:currentColor;">VS</p>
+                <p class="playerdet" *ngIf="Obj.Team1.Players.length === 1" style="width:99%;color:currentColor;">VS</p>
+              </div>
+              <p *ngIf="Obj.TeamAPoints === undefined" class="playerdet" style="padding:0 5px ;margin-left:7px;color:#ff8500;">{{Obj.Team2.Players[0]['Name']}}
+                <span *ngIf="Obj.Team2.Players.length > 1">/<span>{{Obj.Team2.Players[1]['Name']}}</span></span></p>
+                
+                <p *ngIf="Obj.Team2Active===false" class="playerdet" style="padding:0 5px ;margin-left:7px;color:#20557f;">{{Obj.Team2.Players[0]['Name']}}
+                <span *ngIf="Obj.Team2.Players.length > 1">/<span>{{Obj.Team2.Players[1]['Name']}}</span></span></p>
+
+                <p *ngIf="Obj.Team2Active" class="playerdet" style="padding:0 5px ;margin-left:7px;color:#ff8500;">{{Obj.Team2.Players[0]['Name']}}
+                <span *ngIf="Obj.Team2.Players.length > 1">/<span>{{Obj.Team2.Players[1]['Name']}}</span></span></p>
+        </div>
+         <div  class="alignmentfg" >
+              <p class="playerdet paddingpt"  justify-content-around><span style="font-size:12px;color:currentColor;font-weight: bold;">Format</span>
+               <span>:</span><span style="color:#20557f;">{{Obj.GameFormat}}</span>
+               </p>
+        </div>
+        <div  class="alignmentfg">
+              <p class="playerdet paddingpt"  justify-content-around><span style="font-size:12px;color:currentColor;font-weight: bold;">Referee</span> 
+              <span>:</span><span style="color:#20557f;">{{Obj.Referee}}</span>
+              </p>
+        </div>
+        <div class="alignmentfg">
+              <div>
+                    <p  class="timeforevent" style="color:currentColor;font-weight: bold;">Time :
+                       <span  class="timeforevent" style="font-size:10px;color:#20557f;">{{Obj.Time}}</span>
+                    </p>
+              </div>
+        </div>
+              
+        </div>
+        <div class="column  width-25" style="width:120px;" >
+          <div  justify-content-center class="row" style="margin-top: 20%;" *ngIf="Obj.TeamAPoints!==undefined">
+          <button *ngIf="Obj.Team1Active"  class="button button-positive col teamactvestl">{{Obj.TeamAPoints}}
+					</button>
+           <button *ngIf="Obj.Team2Active"  class="button button-positive col teamactvestl">{{Obj.TeamBPoints}}
+					</button>
+
+          <button *ngIf="Obj.Team1Active===false" class="button button-positive col btnbfratve btnwdtht38">{{Obj.TeamAPoints}}
+					</button>
+           <button *ngIf="Obj.Team2Active===false" class="button button-positive col btnbfratve btnwdtht38">{{Obj.TeamBPoints}}
+					</button>
+			</div>
+      <div  justify-content-center class="row" style="margin-top: 10%;cursor:pointer;">
+        <a *ngIf="Obj.TeamAPoints!==undefined" style="color:currentColor;font-weight: bold;font-size:14px;" (click)="LiveScoreboard(Obj._id)">
+          <u>Live Score</u></a>
+      </div>
+          <div *ngIf="Obj.GameStatus===0" class="row"  justify-content-end style="margin-top:90%;display: inline-flex;width:100%;">
+               <button class="adddetailsbtn" width-50 style="color:#20557f;margin-left: 54%;">Pending</button>
+          </div>
+          <div *ngIf="Obj.GameStatus===1 || Obj.GameStatus===2" class="row" align-items-end style="margin-top:37%;display: inline-flex;width:100%;">
+               <button *ngIf="Obj.GameStatus===1" class="adddetailsbtn" width-50 style="color:#20557f;margin-left: 35%;">InProgress</button>
+               <button *ngIf="Obj.GameStatus===2" class="adddetailsbtn" width-50 style="color:#20557f;margin-left: 35%;">Completed</button>
+          </div>
+        </div>
+        </div>
+      </ion-card>
+    </div>
+  </ion-card>
+</ion-content>

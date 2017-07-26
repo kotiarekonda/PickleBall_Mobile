@@ -1,0 +1,197 @@
+
+
+<!--HOME PAGE CONTENT-->
+<ion-content class="contentbg">
+
+  <!--HOME PAGE LOGO-->
+  <ion-row>
+    <ion-col center justify-content-between class="center">
+      <img  src="assets/icon/newicon.png" class="logostyles">
+    </ion-col>
+  </ion-row>
+
+<!--HOME PAGE HEADINg-->
+  <ion-row class="Headingstylesinmobile">
+<ion-col justify-content-between class="center">
+  <h1 class="headingstyles">PICKLEBALL TOURNAMENTS</h1>
+</ion-col>
+</ion-row>
+
+
+
+<!--HOME PAGE TOURNMENT DIRECTORS BUTTON row-->
+ <ion-row justify-content-center>
+    <ion-col width-75 >
+      <div class="opstionstyles" >
+      <p class="opstionName" (click)="TournmentDirectors()">TOURNAMENT DIRECTORS</p>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+  <!--HOME PAGE REFEREE BUTTON row-->
+ <ion-row justify-content-center> 
+    <ion-col width-75>
+      <div class="opstionstyles">
+        <p class="opstionName" (click)="Referee()">REFEREE</p>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <!--HOME PAGE SPECTATOR BUTTON row-->
+ <ion-row justify-content-center>
+    <ion-col width-75>
+      <div class="opstionstyles">
+        <p class="opstionName" (click)="SpectatorMatchesdata()">SPECTATOR</p>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <!--HOME PAGE Rec Mode BUTTON row-->
+  <div class="row" justify-content-center>
+    <div style="margin-top:15%;">
+      <button class="recmodebutton" (click)="RecMode()" style="background:url('assets/icon/recmode.svg');background-repeat:no-repeat; height:36px;width:105px;background-size: contain;"> 
+      </button>
+        </div >
+  </div>
+
+  <!--login carde-->
+  <ion-row *ngIf="Homepageobj.SignInShow" justify-content-center class="SignInShow logincardMobilstyles" >
+    <ion-col width-50 >
+        <ion-card >
+          <ion-row justify-content-center >
+            <ion-col width-90 >
+                <img class="SignInlogostyles"  src="assets/icon/newicon.png" />
+              </ion-col>
+              <ion-col width-10  (click)="closeLogin()">
+                <img class="SignInclose"  src="assets/icon/cancelIcon.svg" />
+              </ion-col>
+          </ion-row>
+        
+        <ion-card-content>
+
+          <!--<ion-row justify-content-center>
+          <ion-col width-50 >
+          <div style="text-align:center;">
+            <button style="color:#ff9700;background-color: #153b6d;cursor:pointer;" ion-button (click)="Showcreatetournmentcard()">CREATE NEW TOURNAMENT</button>
+          </div>
+          </ion-col>
+          </ion-row>-->
+
+          
+          <ion-row justify-content-center >
+            <ion-col width-50 >
+              <div>
+                <input [(ngModel)]="Homepageobj.LoginUserName" class="Signin-inputstyles"   type="text" placeholder="UserName">
+              </div>
+              </ion-col>
+          </ion-row>
+          <ion-row justify-content-center >
+            <ion-col width-50 >
+            <div>
+              <input [(ngModel)]="Homepageobj.LoginPassword" class="Signin-inputstyles"  type="password" placeholder="Password">
+            </div>
+            </ion-col>
+          </ion-row>
+
+           <ion-row justify-content-center style="margin-top:5%;" >
+            <ion-col width-33 >
+            <div>
+             <button *ngIf="Homepageobj.TournmentDirectorlogin" style="width: 70%;max-width: 100%;background-color: #153b6d;" ion-button (click)="Login()">LOGIN</button>
+             <button *ngIf="Homepageobj.Refereelogin" style="width: 70%;max-width: 100%;background-color: #153b6d;" ion-button (click)="LoginReferee()">LOGIN</button>
+            </div>
+            </ion-col>
+            
+          </ion-row>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+   <!--CREATE NEW TOURNMENT Carde-->
+  <ion-row *ngIf="createtournmentshow" justify-content-center class="TournmentShow">
+    <ion-col width-50 >
+        <ion-card>
+          <img  class="SignInlogostyles" src="assets/icon/newicon.png" />
+        <ion-card-content>
+          
+          <ion-row justify-content-center >
+            <ion-col width-50 >
+              <div>
+                <input [(ngModel)]="this.Homepageobj.UserId" class="Tournment-inputstyles"   type="text" placeholder="UserId">
+              </div>
+              </ion-col>
+          </ion-row>
+          <ion-row justify-content-center >
+            <ion-col width-50 >
+            <div>
+              <input [(ngModel)]="this.Homepageobj.Password" class="Tournment-inputstyles"  type="password" placeholder="Password">
+            </div>
+            </ion-col>
+          </ion-row>
+           <ion-row justify-content-center >
+            <ion-col width-50 >
+            <div>
+              <input [(ngModel)]="this.Homepageobj.TournamentTitle" class="Tournment-inputstyles"  type="text" placeholder="Tournament Name">
+            </div>
+            </ion-col>
+          </ion-row>
+           <ion-row justify-content-center >
+            <ion-col width-50 >
+            <div>
+              <input [(ngModel)]="this.Homepageobj.TournamentLogo" class="Tournment-inputstyles"  type="password" placeholder="Tournament Logo">
+            </div>
+            </ion-col>
+          </ion-row>
+           <ion-row justify-content-center >
+            <ion-col width-50 >
+            <div>
+              <input [(ngModel)]="this.Homepageobj.TournamentStartDate" class="Tournment-inputstyles"  type="date" placeholder="Tournament Start Date">
+            </div>
+            </ion-col>
+          </ion-row>
+           <ion-row justify-content-center >
+            <ion-col width-50 >
+            <div>
+              <input [(ngModel)]="this.Homepageobj.TournamentEndDate" class="Tournment-inputstyles"  type="date" placeholder="Tournament End Date">
+            </div>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-center >
+            <ion-col width-50 >
+            <div>
+              <input [(ngModel)]="this.Homepageobj.TournamentAddress" class="Tournment-inputstyles"  type="text" placeholder="Address">
+            </div>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-center >
+            <ion-col width-50 >
+            <div>
+              <input [(ngModel)]="this.Homepageobj.TournamentZipcode" class="Tournment-inputstyles"  type="text" placeholder="Zipcode">
+            </div>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-center >
+            <ion-col width-50 >
+            <div>
+              <input [(ngModel)]="this.Homepageobj.TournamentCity" class="Tournment-inputstyles"  type="text" placeholder="City">
+            </div>
+            </ion-col>
+          </ion-row>
+
+           <ion-row style="margin-top:1%;" justify-content-center >
+            <ion-col width-33 >
+            <div>
+             <button style="background-color: #153b6d;color:#FF9700;" ion-button (click)="createtournment()">Create Tournament</button>
+            </div>
+            </ion-col>
+          </ion-row>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

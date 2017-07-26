@@ -1,0 +1,68 @@
+page-scoreboard-questionmodal {
+     .ModelhederStyles{
+    height:50px;
+    background-color:#b0c0cd;
+
+  }
+  .nameoftourn{
+	color: #20557f;
+	padding-left: 15px;
+}
+.questionheadingstyle{
+    color:#d5da82;
+    text-decoration: underline;
+    font-size: 18px;
+}
+.divtextcolor{
+    color:#fff;
+    font-size: 12px;
+    cursor: pointer;
+    
+}
+.heading2and3{
+    width:63.5%;
+}
+.contentWidth{
+    width:36%;
+}
+.radioButtoncolor{
+    color:#fff;
+}
+.radioButtoncoloractive{
+    color:#ef7a13;
+}
+.editsbtn{
+  background-color:#f2f2f2;
+}
+.maincontent{
+	background-size: cover;
+	background-color: #20557f;
+}
+.colorcls{
+    color: #ef7a13;
+    cursor: pointer;
+}
+.effect{
+	transition:all 1s ease;
+    cursor: pointer;
+}
+.effect:active{
+	font-size:15px !important;
+    cursor: pointer;
+}
+.btnbfratve{
+	background-color: #547c9d;
+    border: 2px solid #ffffff !important;
+	background-color: #547c9d;
+	box-shadow: 0 4px 8px 0 #58809f, 0 6px 20px 0 #58809f;
+	border-radius: 6px;
+    color: #ffffff;
+}
+.start{
+	border: 1px solid #ffffff;
+	width:18%;
+	margin-left: -6%;
+	margin-top: 10px;
+	padding:0px;
+}
+}

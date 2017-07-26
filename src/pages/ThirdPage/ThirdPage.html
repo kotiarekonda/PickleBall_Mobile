@@ -1,0 +1,38 @@
+<style>
+  .ModelhederStyles{
+    height:50px;
+    background-color:#20557f;
+
+  }
+  .nameoftourn{
+	color: #fff;
+	padding-left: 15px;
+}
+.editsbtn{
+  background-color:#f2f2f2;
+}
+/*#1a9ccb*/
+  </style>
+    <ion-header class="ModelhederStyles">
+      <div class="row" justify-content-between><h4 class="nameoftourn">Wristband Description</h4> 
+      <div style="margin-top:4px;margin-right:7px;"> 
+      <button *ngIf="wristbandInput===false" (click)="EditwristbandDescription()" ion-button class="editsbtn"><ion-icon style="color:#000;" name="create"></ion-icon></button>
+      <button class="editsbtn" ion-button  *ngIf="wristbandInput" (click)="Save()"><ion-icon style="color:#000;" name="checkmark"></ion-icon></button>
+      <button style="background-color:#ef7a13;" ion-button  *ngIf="wristbandInput===false" (click)="close()"><ion-icon name="close"></ion-icon></button>
+      </div>
+      </div>
+    </ion-header>
+  <ion-content>
+<div>
+    <ion-item *ngIf="wristbandInput">
+    <ion-label color="primary" floating style="color:#69717d !important;">Please Enter wristband Details</ion-label>
+    <ion-input color="primary" [(ngModel)]="wristbandDescription"  style="border-bottom:1px solid #20557f;"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="wristbandInput===false">
+    <p style="color:#343434" *ngIf="navParams.data.TeamAwristbandDescription !=undefined">{{navParams.data.TeamAwristbandDescription}}</p>
+    <p style="color:#343434" *ngIf="navParams.data.TeamBwristbandDescription !=undefined">{{navParams.data.TeamBwristbandDescription}}</p>
+  </ion-item>
+
+  
+</div>
+  </ion-content>

@@ -1,0 +1,339 @@
+<!--
+  Generated template for the ScoreboardQuestionmodal page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="ModelhederStyles">
+      <div class="row" justify-content-center><h4 class="nameoftourn">MATCH SETTINGS</h4> 
+      
+      </div>
+    </ion-header>
+  <ion-content class="maincontent">
+<div>
+
+  <!--Please Select Event div-->
+  <div>
+    <div class="row" justify-content-center>
+      <p class="row questionheadingstyle" style="margin-right: 32%;">1)  Please Select Event? </p>
+    </div>
+    <div class="row" justify-content-center>
+    <ion-list class="selectlist">
+          <ion-item  class="ionitemclass myclass">
+            <ion-label floating class="ionlabelclass">Event</ion-label>
+            <ion-select class="ionselected" [(ngModel)]="SelectedEventName">
+              <ion-option (ionSelect)="SelectEvent('singles')">Singles</ion-option>
+                  <ion-option (ionSelect)="SelectEvent('Doubles')">Doubles</ion-option>  
+            </ion-select>
+          </ion-item>
+      </ion-list>
+    </div>
+    </div>
+
+    <!--Please Select format div-->
+  <div>
+    <div class="row" justify-content-center>
+      <p class="row questionheadingstyle" style="margin-right: 32%;">2)  Please Select Format? </p>
+    </div>
+    <div class="row" justify-content-center>
+    <ion-list class="selectlist">
+          <ion-item class="ionitemclass myclass" >
+            <ion-label floating class="ionlabelclass">Format</ion-label>
+            <ion-select class="ionselected" [(ngModel)]="SelectedFormatName">
+                  <ion-option (ionSelect)="SelectedFormat('2 of 3 to 11')">2 Of 3 To 11</ion-option>
+                  <ion-option (ionSelect)="SelectedFormat('1 to 15')">1 To 15 Win By 1</ion-option>
+                  <ion-option (ionSelect)="SelectedFormat('1 to 21')">1 To 21 Win By 1</ion-option>
+                   <ion-option (ionSelect)="SelectedFormat('1 to 15 win By 2')">1 To 15 Win By 2</ion-option>
+                  <ion-option (ionSelect)="SelectedFormat('1 to 21 win By 2')">1 To 21 Win By 2</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+    </div>
+    </div>
+
+    <!--Which Player is the first server on each team div-->
+  <div *ngIf="matchobj.Team1 != undefined"> 
+    <div class="row" justify-content-center>
+      <p class="row questionheadingstyle">3)      Which Player is the first server on each team? </p>
+    </div>
+      <div class="row" *ngIf="matchobj.Team1.Players.length === 2 && Firstserve.TeamAplayersSelect !=undefined || Firstserve.TeamBplayersSelect !=undefined" justify-content-center>
+
+            <p class="colorcls" style="margin:0px;" *ngIf="Firstserve.TeamAplayersSelect !=undefined && Firstserve.TeamAplayersSelect">{{Firstserve.SelectedTeamPersonText}}</p>
+            <p class="colorcls" style="margin:0px;" *ngIf="Firstserve.TeamBplayersSelect !=undefined && Firstserve.TeamBplayersSelect">{{Firstserve.SelectedTeamPersonText}}</p>
+        </div>
+          
+        <div *ngIf="matchobj.Team1.Players.length == 1" class="divtextcolor row" justify-content-center >
+          <div class="contentWidth">
+						<p style="margin:0px;margin-bottam:2px;" class="colorcls">{{matchobj.Team1.Players[0]["Name"]}}</p>
+						<div class="row" justify-content-center>
+						<p style="margin:0px;margin-bottam:2px;width: 77%;margin-right:10%;">vs</p>
+            </div>
+						<p style="margin:0px;margin-bottam:2px;" class="colorcls">{{matchobj.Team2.Players[0]["Name"]}}</p>
+            </div>
+					</div>
+          
+          <div *ngIf="matchobj.Team1.Players.length === 2" class="divtextcolor row" justify-content-center>
+          <div class="contentWidth">
+            <p style="margin:0px;margin-bottam:2px;">
+						<span class="effect colorcls" *ngIf="matchobj.Team1.Players[0].Served"  (click)="TeamASelectFirstServePlayerName(0)"> {{matchobj.Team1.Players[0]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="matchobj.Team1.Players[0].Served === false" (click)="TeamASelectFirstServePlayerName(0)"> {{matchobj.Team1.Players[0]["Name"]}}
+						</span>/
+						<span class="effect colorcls" *ngIf="matchobj.Team1.Players[1].Served"  (click)="TeamASelectFirstServePlayerName(1)"> {{matchobj.Team1.Players[1]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="matchobj.Team1.Players[1].Served === false" (click)="TeamASelectFirstServePlayerName(1)"> {{matchobj.Team1.Players[1]["Name"]}}
+						</span>
+            </p>
+            <div class="row" justify-content-center>
+						<p style="margin:0px;margin-bottam:2px;width:38%;margin-right:18%;">vs</p>
+            </div>
+            <p style="margin:0px">
+						<span class="effect colorcls" *ngIf="matchobj.Team2.Players[0].Served"  (click)="TeamBSelectFirstServePlayerName(0)" > {{matchobj.Team2.Players[0]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="matchobj.Team2.Players[0].Served === false"  (click)="TeamBSelectFirstServePlayerName(0)"> {{matchobj.Team2.Players[0]["Name"]}}
+						</span>/
+						<span class="effect colorcls" *ngIf="matchobj.Team2.Players[1].Served"  (click)="TeamBSelectFirstServePlayerName(1)"> {{matchobj.Team2.Players[1]["Name"]}}
+						</span>
+						<span class="effect" *ngIf="matchobj.Team2.Players[1].Served === false"  (click)="TeamBSelectFirstServePlayerName(1)"> {{matchobj.Team2.Players[1]["Name"]}}
+						</span>
+            </p>
+            </div>
+					</div>
+      </div>
+
+
+      <!--Which team is serving first div-->
+      <div *ngIf="matchobj.Team1 != undefined"> 
+    <div class="row" justify-content-center>
+      <p class="row questionheadingstyle heading2and3">4)      Which team is serving first?</p>
+    </div>
+
+     <div class="row" style="width:90%;" *ngIf="Firstserve.SelectTwoteams !=undefined && Firstserve.SelectTwoteams" justify-content-center>
+            <p class="colorcls" style="margin:0px;">Select first serving team</p>
+        </div>
+    
+        <div *ngIf="matchobj.Team1.Players.length == 1" class="divtextcolor row" justify-content-center >
+          <div class="contentWidth">
+					 <p style="margin:0px;margin-bottam:2px;">
+              <span *ngIf="Firstserve.SelectedTwoTeams && Firstserve.Team1===false" (click)="SelectTeam('Team1')"><ion-icon class="radioButtoncolor" name="radio-button-off"></ion-icon>   {{matchobj.Team1.Players[0]["Name"]}}</span>
+              <span *ngIf="Firstserve.SelectedTwoTeams && Firstserve.Team1"><ion-icon class="radioButtoncoloractive"  name="radio-button-on"></ion-icon> </span>
+              
+              <span *ngIf="Firstserve.Team1" class="colorcls">{{matchobj.Team1.Players[0]["Name"]}}</span>
+            </p>
+						<div class="row" justify-content-center>
+						<p style="margin:0px;margin-bottam:2px;width:72%;margin-right:3%;">vs</p>
+            </div>
+						 <p style="margin:0px;margin-bottam:2px;">
+                <span *ngIf="Firstserve.SelectedTwoTeams && Firstserve.Team2===false" (click)="SelectTeam('Team2')"><ion-icon class="radioButtoncolor" name="radio-button-off"></ion-icon>   {{matchobj.Team2.Players[0]["Name"]}}</span>
+                <span *ngIf="Firstserve.SelectedTwoTeams && Firstserve.Team2"><ion-icon class="radioButtoncoloractive" name="radio-button-on"></ion-icon> </span>
+              
+              <span *ngIf="Firstserve.Team2" class="colorcls">{{matchobj.Team2.Players[0]["Name"]}}</span>
+            </p>
+            </div>
+					</div>
+          <div *ngIf="matchobj.Team1.Players.length == 2" class="divtextcolor row" justify-content-center>
+          <div class="contentWidth">
+            <p style="margin:0px;margin-bottam:2px;">
+              <span *ngIf="Firstserve.SelectedTwoTeams===undefined"><ion-icon class="radioButtoncolor" name="radio-button-off"></ion-icon>   {{matchobj.Team1.Players[0]["Name"]}}/{{matchobj.Team1.Players[1]["Name"]}}</span>
+              <span *ngIf="Firstserve.SelectedTwoTeams !=undefined && Firstserve.Team1===false" (click)="SelectTeam('Team1')"><ion-icon class="radioButtoncolor" name="radio-button-off"></ion-icon>  {{matchobj.Team1.Players[0]["Name"]}}/{{matchobj.Team1.Players[1]["Name"]}}</span>
+              <span *ngIf="Firstserve.SelectedTwoTeams !=undefined && Firstserve.Team1"><ion-icon class="radioButtoncoloractive"  name="radio-button-on"></ion-icon> </span>
+						<span class="effect colorcls" *ngIf="Firstserve.Team1" class="radioButtoncoloractive"> {{matchobj.Team1.Players[0]["Name"]}}/{{matchobj.Team1.Players[1]["Name"]}}
+						</span>
+            </p>
+            <div class="row" justify-content-center>
+						<p style="margin:0px;margin-bottam:2px;width:38%;margin-right:10%;">vs</p>
+            </div>
+            <p style="margin:0px">
+            <span *ngIf="Firstserve.SelectedTwoTeams===undefined"><ion-icon class="radioButtoncolor" name="radio-button-off"></ion-icon>    {{matchobj.Team2.Players[0]["Name"]}}/{{matchobj.Team2.Players[1]["Name"]}}</span>
+            <span *ngIf="Firstserve.SelectedTwoTeams !=undefined && Firstserve.Team2===false" (click)="SelectTeam('Team2')"><ion-icon class="radioButtoncolor" name="radio-button-off">   {{matchobj.Team2.Players[0]["Name"]}}/{{matchobj.Team2.Players[1]["Name"]}}</ion-icon></span>
+            <span *ngIf="Firstserve.SelectedTwoTeams !=undefined && Firstserve.Team2"><ion-icon class="radioButtoncoloractive" name="radio-button-on"></ion-icon> </span>
+						<span class="effect colorcls" *ngIf="Firstserve.Team2" class="radioButtoncoloractive" > {{matchobj.Team2.Players[0]["Name"]}}/{{matchobj.Team2.Players[1]["Name"]}}
+						</span>
+            </p>
+            </div>
+					</div>
+      </div> 
+
+
+      <!--Which side of the net are the teams on div-->
+      <div *ngIf="matchobj.Team1 != undefined"> 
+    <div class="row" justify-content-center>
+      <p class="row questionheadingstyle heading2and3">5)      Which side of the net are the teams on?</p>
+    </div>
+<div class="row" justify-content-center (click)="ChangeTeamSides()">
+  <img style="margin-right: 9%;" src="assets/icon/RLarrows.png"> 
+  </div>
+
+
+  <!--Event Doubles Staring div-->
+<div class="row divtextcolor" *ngIf="matchobj.Team1.Players.length == 2" justify-content-center>
+  <div class="row" style="width:75%">
+  <!--Left Side-->
+
+<!--Team1 left Side div-->
+<div class="col" width-45 style="width:45%" *ngIf="Firstserve.Team1Sides==='Left'">
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">LeftSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[0].Served === false && matchobj.Team1.Players[1].Served" >{{matchobj.Team1.Players[0]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[1].Served === false && matchobj.Team1.Players[0].Served" >{{matchobj.Team1.Players[1]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[1].Served === false && matchobj.Team1.Players[0].Served === false" >{{matchobj.Team1.Players[1]["Name"]}}</p>
+</div>
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">RightSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[0].Served && matchobj.Team1.Players[1].Served ===false" >{{matchobj.Team1.Players[0]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[1].Served && matchobj.Team1.Players[0].Served === false" >{{matchobj.Team1.Players[1]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[1].Served === false && matchobj.Team1.Players[0].Served === false" >{{matchobj.Team1.Players[0]["Name"]}}</p>
+</div>
+</div>
+
+<!--Team2 left Side div-->
+<div class="col" width-45 style="width:45%" *ngIf="Firstserve.Team2Sides==='Left'">
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">LeftSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[0].Served === false && matchobj.Team2.Players[1].Served" >{{matchobj.Team2.Players[0]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[1].Served === false && matchobj.Team2.Players[0].Served" >{{matchobj.Team2.Players[1]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[1].Served === false && matchobj.Team2.Players[0].Served === false" >{{matchobj.Team2.Players[1]["Name"]}}</p>
+</div>
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">RightSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[0].Served && matchobj.Team2.Players[1].Served ===false" >{{matchobj.Team2.Players[0]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[1].Served && matchobj.Team2.Players[0].Served === false" >{{matchobj.Team2.Players[1]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[1].Served === false && matchobj.Team2.Players[0].Served === false" >{{matchobj.Team2.Players[0]["Name"]}}</p>
+</div>
+</div>
+
+
+
+<!--Middle-->
+<div class="col" width-10 style="max-width:15%"> 
+<div  class="row" >|
+</div>
+<div  class="row" >|
+</div>
+<div  class="row" >|
+</div>
+<div  class="row" >|
+</div>
+</div>
+
+<!--Right Side -->
+
+<!--Team1 Right Side div-->
+<div class="col" width-45 style="width:45%" *ngIf="Firstserve.Team1Sides==='Right'">
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">RightSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[0].Served && matchobj.Team1.Players[1].Served ===false" >{{matchobj.Team1.Players[0]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[1].Served && matchobj.Team1.Players[0].Served === false" >{{matchobj.Team1.Players[1]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[1].Served === false && matchobj.Team1.Players[0].Served === false" >{{matchobj.Team1.Players[0]["Name"]}}</p>
+
+</div>
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">LeftSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[0].Served === false && matchobj.Team1.Players[1].Served" >{{matchobj.Team1.Players[0]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[1].Served === false && matchobj.Team1.Players[0].Served" >{{matchobj.Team1.Players[1]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team1.Players[1].Served === false && matchobj.Team1.Players[0].Served === false" >{{matchobj.Team1.Players[1]["Name"]}}</p>
+</div>
+</div>
+<!--Team2 Right Side div-->
+<div class="col" width-45 style="width:45%" *ngIf="Firstserve.Team2Sides==='Right'">
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;;">RightSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[0].Served && matchobj.Team2.Players[1].Served ===false" >{{matchobj.Team2.Players[0]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[1].Served && matchobj.Team2.Players[0].Served === false" >{{matchobj.Team2.Players[1]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[1].Served === false && matchobj.Team2.Players[0].Served === false" >{{matchobj.Team2.Players[0]["Name"]}}</p>
+
+</div>
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">LeftSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[0].Served === false && matchobj.Team2.Players[1].Served" >{{matchobj.Team2.Players[0]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[1].Served === false && matchobj.Team2.Players[0].Served" >{{matchobj.Team2.Players[1]["Name"]}}</p>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" *ngIf="matchobj.Team2.Players[1].Served === false && matchobj.Team2.Players[0].Served === false" >{{matchobj.Team2.Players[1]["Name"]}}</p>
+</div>
+</div>
+  </div>
+</div>
+<!--Event Doubles End-->
+
+
+<!--Event Singles Staring div-->
+<div class="row divtextcolor" *ngIf="matchobj.Team1.Players.length == 1" justify-content-center>
+  <div class="row" style="width:75%">
+  <!--Left Side-->
+
+<!--Team1 left Side div-->
+<div class="col" width-45 style="width:45%" *ngIf="Firstserve.Team1Sides==='Left'">
+
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">LeftSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+</div>
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">RightSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;" >{{matchobj.Team1.Players[0]["Name"]}}</p>
+</div>
+
+
+</div>
+
+<!--Team2 left Side div-->
+<div class="col" width-45 style="width:45%" *ngIf="Firstserve.Team2Sides==='Left'">
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">LeftSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+</div>
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">RightSide</p><P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;">{{matchobj.Team2.Players[0]["Name"]}}</p>
+</div>
+</div>
+
+
+
+<!--Middle-->
+<div class="col" width-10 style="max-width:15%"> 
+<div  class="row" >|
+</div>
+<div  class="row" >|
+</div>
+<div  class="row" >|
+</div>
+<div  class="row" >|
+</div>
+</div>
+
+<!--Right Side -->
+
+<!--Team1 Right Side div-->
+<div class="col" width-45 style="width:45%" *ngIf="Firstserve.Team1Sides==='Right'">
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">RightSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;">{{matchobj.Team1.Players[0]["Name"]}}</p>
+</div>
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">LeftSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+</div>
+</div>
+<!--Team2 Right Side div-->
+<div class="col" width-45 style="width:45%" *ngIf="Firstserve.Team2Sides==='Right'">
+  <div  class="row" >
+<p style="margin:0px;margin-top: 10px;">RightSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+<p style="margin:0px;margin-left: 10px;margin-top: 10px;">{{matchobj.Team2.Players[0]["Name"]}}</p>
+</div>
+<div  class="row" >
+<p style="margin:0px;margin-top: 10px;">LeftSide</p> <P style="margin:0px;margin-top: 10px;margin-left: 3px;">:</P>
+</div>
+</div>
+  </div>
+</div>
+
+</div>
+
+<!--Start Button div div-->
+ <div *ngIf="matchobj.Team1 != undefined" class="row" style="margin-top:2%;" justify-content-center>
+      <p class="row"></p>
+      <button  (click)="StartMatch()" class="btnbfratve start" align-items-end >
+			 		<p class="startp">SUBMIT</p>
+			 </button>
+    </div>
+
+    </div>
+   
+  </ion-content>

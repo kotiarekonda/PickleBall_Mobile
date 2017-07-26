@@ -1,0 +1,284 @@
+page-tournamentsdirectorhome {
+        .contentbg {
+        /*  background: url('assets/icon/homescreen.png'); */
+            background-size: cover;
+            background-color: #20557f;
+        }
+        .logostyles{
+        width:130px;
+        height: 70px;
+        padding-right: 10px;
+        padding-top: 8px;
+
+        }
+        
+        .cardforteam {
+            /*  width:25%;*/
+            background-color: #fff;
+            /*border: 1px solid rgba(140, 140, 140, 0.34);*/
+            margin: 5px;
+            border-radius: 10px;
+            border: 1px solid #20557f;
+        }
+        
+        .mainioncard {
+            background-color: transparent;
+            border: 1px solid rgba(140, 140, 140, 0.34);
+            padding-top: 7px;
+            margin: 5px;
+            width: 99%;
+        }
+        
+        .eventbackg {
+            background-color: rgba(13, 43, 64, 0.93);
+            color: #fff;
+        }
+        
+        .eventcolor {
+            color: #fff;
+        }
+        
+        .alignmentfg {
+            text-align: start;
+            padding: 5px 0px;
+        }
+        
+        .playerdet {
+            font-size: 11px;
+            color: #000;
+        }
+        
+        .paddingpt {
+            padding-left: 8%;
+        }
+        
+        .timeforevent {
+            font-size: 12px;
+            padding-top: 3px;
+            color: #e0dfdf;
+        }
+        
+        .courtcontent {
+            width: 100%;
+            margin: 2px;
+        }
+        
+        .timepick {
+            width: 50%;
+        }
+
+        .teamactvestl{
+            background-color:rgba(255, 152, 0, 0.86);
+            border-radius: 3px;
+            width:20px;
+            max-width: 38px;
+            height:28px;
+            border: 1px solid #fff;
+            font-weight: bold;
+            box-shadow: 0px 0px 9px 2px rgba(136, 136, 136, 0.56);
+        }
+
+        .btnwdtht38{
+            border-radius: 3px;
+            background-color:#20557f;
+            width:20px;
+            max-width: 38px;
+            height:28px;
+            border: 1px solid rgba(202, 200, 200, 0.46);
+            font-weight: bold;
+        }
+        
+        .myclass .item-inner {
+            border-bottom: none !important;
+        }
+        .scheduleMatchopstion{
+            text-align: center;
+            border: 2px solid #bcccd8;
+            background-color: #143055;
+            color:#f1ee83;
+            margin-top: 8%;
+            cursor:pointer;
+            font-size: 13px;
+            border-radius: 17px;
+        }
+        .scheduleMatchName{
+            letter-spacing: 0.6px;
+            font-weight:600;
+            margin: 7px 0px;
+        }
+        .logoo{
+            margin-top:8px;
+            }
+        @media screen and (min-width: 500px) and (max-width: 1020px) {
+            .courtcontent {
+            width: 32%;
+            }
+            .logostyles{
+            margin-top:7px;
+            }
+            .logoo{
+            margin-top:20px;
+            }
+        }
+        @media screen and (max-width: 1025px)  {
+        
+            .logostyles{
+            margin-top:7px;
+            }
+            .logoo{
+            margin-top:20px;
+            }
+        }
+        
+        .contentbg {
+            /* background: url('assets/icon/homescreen.png'); */
+            background-size: cover;
+            background-color:#20557f;
+        }
+        
+        .cardforteam {
+            /*  width:25%;*/
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid #20557f;
+            margin: 5px;
+        }
+        
+        .mainioncard {
+            background-color: transparent;
+            border: 1px solid rgba(140, 140, 140, 0.34);
+            padding-top: 7px;
+            margin: 5px;
+            width: 99%;
+        }
+        
+        .eventbackg {
+            background-color: rgba(13, 43, 64, 0.93);
+            color: #fff;
+        }
+        
+        .eventcolor {
+            color: #fff;
+        }
+        
+        .alignmentfg {
+            text-align: start;
+            padding: 5px 0px;
+        }
+        
+        .playerdet {
+            font-size: 11px;
+            color: #000;
+        }
+        
+        .paddingpt {
+            padding-left: 10px;
+        }
+        
+        .timeforevent {
+            font-size: 12px;
+            padding-top: 3px;
+            color: #e0dfdf;
+            padding-left: 10px;
+        }
+        
+        .timeforeventt {
+            font-size: 12px;
+            padding-top: 3px;
+            color: #e0dfdf;
+        }
+        .deleteimg{
+            height: 20px;
+            width: 30px;
+            padding: 6px;
+        }
+        
+        .eventnamestyle {
+            width: 66%;
+            text-align: end;
+        }
+        
+        .timepick {
+            width: 50%;
+        }
+        
+        .myclass .item-inner {
+            border-bottom: none !important;
+        }
+        
+        @media screen and (min-width: 500px) and (max-width: 1020px) {
+            .courtcontent {
+            width: 32%;
+            }
+        }
+        
+        .list-ios>.item-block:first-child {
+            border-top: none !important;
+        }
+        
+        .list-ios>.item-block:last-child,
+        .list-ios>.item-wrapper:last-child .item-block {
+            border-bottom: none !important;
+        }
+        
+        .list-ios>.item-block:last-child .item-inner,
+        .list-ios>.item-wrapper:last-child .item-block .item-inner {
+            border-bottom: none !important;
+        }
+        
+        .list-ios .item-block .item-inner {
+            border-bottom: none !important;
+        }
+        
+        .list-ios .item[no-lines],
+        .list-ios .item[no-lines] .item-inner {
+            border-width: none !important;
+        }
+        
+        .Team {
+            padding-left: 10px;
+            color: #bdbdbd;
+            font-size: 12px;
+            margin: 2px;
+            font-weight: bold;
+        }
+        
+        .selectlist {
+            // width: 100%;
+            margin: 0px 0px;
+        }
+        
+        .ionitemclass {
+            background-color: transparent;
+        }
+        
+        .ionlabelclass {
+            color: #c8c7cc;
+            font-size: 15px;
+            margin: 3px;
+        }
+        
+        .ionselected {
+            color: #ef7a13;
+            font-size: 10px;
+            padding-bottom: 2px;
+            border-bottom: 1px solid rgba(125, 128, 125, 0.54);
+            padding-right: 4px;
+            padding-left:15px;
+        }
+        
+        .adddetailsbtn {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            background-color: transparent;
+            border: 1px solid #868686;
+        }
+
+    @media screen and (min-width : 320px) and (max-width : 700px) {
+        // .courtcontent{
+        //     width: 100% !important;
+        //     margin: 2px;
+        // }
+    }
+}
